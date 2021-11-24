@@ -1,0 +1,13 @@
+.logo{
+    max-width: 25%;
+}
+
+.nav-item:hover{
+    color: white;
+    background-color: rgb(150, 16, 16);
+    font-weight: bold;
+}
+
+.nav-item:active{
+    background-color: darkgray;
+}
