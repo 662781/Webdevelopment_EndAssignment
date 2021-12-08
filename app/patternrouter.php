@@ -14,7 +14,7 @@ class PatternRouter {
     
     public function route($uri) {
 
-        //Checks which controller to use
+        
         $uri = $this->stripParameters($uri);
 
         $explodedUri = explode('/', $uri);
@@ -28,7 +28,7 @@ class PatternRouter {
         $controllerName = $explodedUri[0] . "controller";
 
 
-        //Checks which method of the controller to use
+        
         if(!isset($explodedUri[1]) || empty($explodedUri[1])) {
 
             $explodedUri[1] = 'index';

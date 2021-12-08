@@ -6,8 +6,8 @@ class HomeController extends Controller{
 
     public function index(){
         // echo "You've reached the index method of the home controller";
-        // include_once '../view/home/home.php';
-        $this->displayView("model");
+        include '../view/home/home.php';
+        // $this->displayView("model");
     }
 
     public function about(){
