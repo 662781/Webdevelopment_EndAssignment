@@ -23,10 +23,12 @@
 }
 
 .col{
-    border: 5px solid red;
+    /* border: 5px solid red; */
 }
 
-
+.card .card-body img{
+    width: 75%;
+}
 
 @media all and (min-width: 992px) {
 	.navbar .nav-item .dropdown-menu{ display: none; }

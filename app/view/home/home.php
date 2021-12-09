@@ -13,38 +13,9 @@
 </head>
 
 <body>
-    <div class="container mt-2">
-        <div class="row">
-            <div class="col-md">
-                <nav class="navbar navbar-expand-lg navbar-dark">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="index.php"><img class="logo" src="images/pizza_logo_ico.ico" alt="Pizza Time!"></a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="main_nav">
-                            <ul class="nav me-auto">
-                                <li class="nav-item active"><a class="nav-link link-dark px-2" href="index.php">Home </a> </li>
-                                <li class="nav-item"><a class="nav-link link-dark px-2" href="#"> Pasta </a></li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link link-dark px-2 dropdown-toggle" data-bs-toggle="dropdown">Pizza</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Start creating!</a></li>
-                                        <li><a class="dropdown-item" href="#">Our masterpieces</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="nav">
-                                <li class="nav-item"><a href="#" class="nav-link link-dark px-2"><img src="images/person-circle.svg" alt="login"> Login</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link link-dark px-2"><img src="images/person-plus-fill.svg" alt="sign up"> Sign up</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link link-dark px-2"><img src="images/cart.svg" alt="cart"> Cart</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <div class="row">
+    <? include_once '../view/navbar/navbar.php'; ?>
+    <div class="container mt-2" id="content">
+        <div class="row" id="carousel">
             <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
@@ -59,9 +30,10 @@
 
                         <div class="container">
                             <div class="carousel-caption text-start">
-                                <h1>Example headline.</h1>
-                                <p>Some representative placeholder content for the first slide of the carousel.</p>
-                                <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+                                <img src="images/pizza_logo.png" alt="pizza_logo">
+                                <h1>Join the club</h1>
+                                <p>Create an account and begin creating your own pizzas!</p>
+                                <p><a class="btn btn-lg btn-primary" href="register">Sign up today</a></p>
                             </div>
                         </div>
                     </div>
@@ -102,15 +74,32 @@
                 </button>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col col-md-4">
-                Something here
+        <div class="row mt-2" id="cards">
+            <div class="col col-md-6">
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h2>Try the delicious pizzas!</h2>
+                    </div>
+                    <div class="card-body p-3">
+                        <img src="images/pizza-margarita-italia.jpg" alt="pizza margarita">
+                        <button class="btn btn-primary">Browse</button>
+                    </div>
+                </div>
             </div>
-            <div class="col col-md-8">
-                Something there
+            <div class="col col-md-6">
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h2>Our pasta d'Italia</h2>
+                    </div>
+                    <div class="card-body p-3">
+                        <img src="images/pasta-bolognese.png" alt="pasta">
+                        <button class="btn btn-primary">Browse</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <? include_once '../view/footer/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
