@@ -1,0 +1,41 @@
+body{
+    background-color: goldenrod;
+}
+
+*{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
+.logo{
+    max-width: 50%;
+}
+
+.container-fluid{
+    background-color: rgb(111, 139, 61);
+}
+
+.nav-item .nav-link:hover{
+    color: white;
+    background-color: rgb(250, 104, 78);
+    font-weight: bold;
+}
+
+.nav-item.active{
+    background-color: goldenrod;
+    font-weight: bold;
+}
+
+/* .col{
+    /* border: 5px solid red;
+} */
+
+.card .card-body img{
+    width: 75%;
+}
+
+@media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu{ display: none; }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+}	
