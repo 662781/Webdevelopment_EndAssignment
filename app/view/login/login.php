@@ -10,22 +10,35 @@
     <title>Pizza Time - Login</title>
 </head>
 
-<body>
-    <? include_once '../view/navbar/navbar.php'; ?>
-    <div class="container mt-2">
-        <div class="row">
-            <h2>Login</h2>
-            <p>Please fill in your credentials</p>
+<body class="text-center">
+    <div class="container">
+        <main class="form-signin">
+            <figure class="logo-figure">
+                <a href="home"><img class="mb-4 logo" src="images/pizza_logo.png" alt="Pizza time?"></a>
+                <figcaption>It's Pizza Time!</figcaption>
+            </figure>
+            <form>
+                <h1 class="h3 mb-3 fw-normal title">Please sign in</h1>
 
-            <form action="login.php">
-                <label for="username">Username:</label><br>
-                <input type="text" id="username" name="username"><br>
-                <label for="password">Password:</label><br>
-                <input type="text" id="password" name="password"><br>
-                <input type="submit" value="Login">
+                <div class="form-floating">
+                    <input type="username" class="form-control" id="floatingInput" placeholder="fluffyunicorn420">
+                    <label for="floatingInput">Username</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                <label class="register"><a href="register">No account? Register here</a></label>
+                <p class="mt-5 mb-3 text-muted">© 2021–2022</p>
             </form>
-        </div>
-
+        </main>
     </div>
 </body>
 

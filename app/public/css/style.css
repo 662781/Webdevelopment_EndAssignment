@@ -36,3 +36,8 @@
 	.navbar .nav-item .dropdown-menu{ margin-top:0; }
 }	
 
+.dropdown-menu .dropdown-item:hover{
+    background-color: rgb(250, 104, 78);
+    color: white;
+}
+

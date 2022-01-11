@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -9,7 +10,39 @@
     <link rel="icon" href="images/pizza_logo_ico.ico" type="image" sizes="16x16">
     <title>Pizza Time - Register</title>
 </head>
-<body>
-    Here comes the register menu
+
+<body class="text-center">
+    <div class="container">
+        <main class="form-signin">
+            <figure class="logo-figure">
+                <a href="home"><img class="mb-4 logo" src="images/pizza_logo.png" alt="Pizza time?"></a>
+                <figcaption>It's Pizza Time!</figcaption>
+            </figure>
+            <form>
+                <h1 class="h3 mb-3 fw-normal title">Register a new account</h1>
+                <div class="form-floating">
+                    <input type="username" class="form-control" id="floatingInput" placeholder="fluffyunicorn420">
+                    <label for="floatingInput">Username</label>
+                </div>
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="email@example.com">
+                    <label for="floatingInput">E-mail</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="newsletter"> I would like to recieve the newsletter weekly
+                    </label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+                <label class="login"><a href="login">Already an account? Login here</a></label>
+                <p class="mt-5 mb-3 text-muted">© 2021–2022</p>
+            </form>
+        </main>
+    </div>
 </body>
+
 </html>
