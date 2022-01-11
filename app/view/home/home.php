@@ -80,9 +80,9 @@
                     <div class="card-header">
                         <h2>Try the delicious pizzas!</h2>
                     </div>
-                    <div class="card-body p-3">
-                        <img src="images/pizza-margarita-italia.jpg" alt="pizza margarita">
-                        <button class="btn btn-primary">Browse</button>
+                    <div class="card-body p-3 homecard">
+                        <img src="images/pizza-margarita.png" alt="pizza margarita">
+                        <button class="btn btn-primary"><a href="products">Browse</a></button>
                     </div>
                 </div>
             </div>
@@ -91,9 +91,9 @@
                     <div class="card-header">
                         <h2>Our pasta d'Italia</h2>
                     </div>
-                    <div class="card-body p-3">
+                    <div class="card-body p-3 homecard">
                         <img src="images/pasta-bolognese.png" alt="pasta">
-                        <button class="btn btn-primary">Browse</button>
+                        <button class="btn btn-primary"><a href="products">Browse</a></button>
                     </div>
                 </div>
             </div>

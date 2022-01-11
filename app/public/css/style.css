@@ -41,3 +41,22 @@
     color: white;
 }
 
+.product-header{
+    font-weight: bold;
+    color: goldenrod;
+}
+
+.homecard a{
+    color: white;
+}
+
+.product-image{
+    max-width: 500px;
+}
+
+.product-type{
+    color: rgb(250, 104, 78);
+    font-weight: bolder;
+    font-size: 60px;
+}
+
