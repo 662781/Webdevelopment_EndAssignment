@@ -1,5 +1,6 @@
 *{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+    font-family: "Times New Roman", Times, serif;
 }
 
 
@@ -54,7 +55,7 @@
     max-width: 500px;
 }
 
-.product-type{
+.product-type, #creator-header{
     color: rgb(250, 104, 78);
     font-weight: bolder;
     font-size: 60px;
@@ -69,4 +70,12 @@
       top: 0;
       left: 0;
       min-height: 300px;
+}
+
+#empty-pizza{
+    max-width: 500px;
+}
+
+.btn-creator a, .btn-creator a:hover{
+    color: white;
 }
