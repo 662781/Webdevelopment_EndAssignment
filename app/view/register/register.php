@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . '/../model/user.php';
-require __DIR__ . '/../service/userservice.php';
+require_once __DIR__ . '/../../model/user.php';
+require_once __DIR__ . '/../../service/userservice.php';
 
 $username = $email = $password = "";
 
@@ -45,7 +45,7 @@ if(isset($_POST["submit"])){
                 <figcaption>It's Pizza Time!</figcaption>
             </figure>
 
-            <form action="register.php" method="post">
+            <form action="register" method="post">
                 <h1 class="h3 mb-3 fw-normal title">Register a new account</h1>
                 <div class="form-floating">
                     <input type="username" class="form-control" id="username" name="username" placeholder="fluffyunicorn420">

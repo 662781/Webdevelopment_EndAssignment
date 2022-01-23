@@ -3,7 +3,7 @@ require __DIR__ . '/../repository/userrepository.php';
 
 class UserService {
 
-    protected $repo;
+    private $repo;
 
     function __construct()
     {

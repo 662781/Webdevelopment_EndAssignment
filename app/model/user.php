@@ -1,5 +1,7 @@
 <?php
-class User{
+require_once __DIR__ . '/model.php';
+
+class User extends Model{
 
     //Fields
     private int $id;
@@ -7,12 +9,6 @@ class User{
     private string $email;
     private string $password;
     private string $created_at;
-
-    //Gets all the properties (fields)
-    public function jsonSerialize():mixed
-    {
-        return get_object_vars($this);
-    } 
 
     //Getters
     public function getId(): int

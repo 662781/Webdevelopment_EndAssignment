@@ -13,8 +13,10 @@ class RegisterController extends Controller{
     }
 
     public function index(){
+
+        // $users = $this->userService->getAll();
         
         include '../view/register/register.php';
-        // $this->displayView("model");
+        // $this->displayView($users);
     }
 }
