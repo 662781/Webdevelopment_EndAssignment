@@ -71,7 +71,7 @@ if (isset($_POST["sign-in"])) {
                     <label>
                         <input type="checkbox" value="remember-me"> Remember me
                     </label>
-                    <label class="pw_err">
+                    <label class="error_msg">
                         <?php echo $error ?>
                     </label>
                 </div>

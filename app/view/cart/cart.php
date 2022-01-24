@@ -62,7 +62,7 @@ if(isset($_POST["logout"])){
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
+                                    <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="email" placeholder="you@example.com">
                                     <div class="invalid-feedback">
                                         Please enter a valid email address for shipping updates.

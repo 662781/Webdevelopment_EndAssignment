@@ -3,19 +3,26 @@ require_once __DIR__ . '/../../model/user.php';
 require_once __DIR__ . '/../../service/userservice.php';
 
 $userService = new UserService();
+$error = "";
 
-if(isset($_POST["register"])){
+if (isset($_POST["register"])) {
 
-    $user = new User();
-    $user->setUsername($_POST["username"]);
-    $user->setEmail($_POST["email"]);;
-    $user->setPassword($_POST["password"]);
+    if ($_POST["username"] && $_POST["password"] != "") {
+        $user = new User();
+        $user->setUsername($_POST["username"]);
+        $user->setEmail($_POST["email"]);;
+        $user->setPassword($_POST["password"]);
 
-    if($userService->getByUsername($user->getUsername()) != null){
-        echo "Sorry, the chosen username is already in use!";
+        if ($userService->getByUsername($user->getUsername()) != null) {
+            $error = "Sorry, the chosen username is already in use!";
+        } else {
+            $userService->insert($user);
+            header("location: login");
+
+        }
     }
     else{
-        $userService->insert($user);
+        $error = "Please fill in all fields before submitting!";
     }
 }
 
@@ -60,6 +67,9 @@ if(isset($_POST["register"])){
                 <div class="checkbox mb-3">
                     <label>
                         <input type="checkbox" value="newsletter"> I would like to recieve the newsletter weekly
+                    </label>
+                    <label class="error_msg">
+                        <?php echo $error ?>
                     </label>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit" name="register" id="submit">Register</button>
