@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../repository/userrepository.php';
+require_once __DIR__ . '/../repository/userrepository.php';
 
 class UserService {
 
@@ -19,7 +19,7 @@ class UserService {
     }
 
     public function insert($user) {
-        return $this->repo->getAll();
+        return $this->repo->insert($user);
     }
 
     

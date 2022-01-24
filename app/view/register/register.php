@@ -2,8 +2,6 @@
 require_once __DIR__ . '/../../model/user.php';
 require_once __DIR__ . '/../../service/userservice.php';
 
-$username = $email = $password = "";
-
 $userService = new UserService();
 
 if(isset($_POST["register"])){
@@ -13,8 +11,8 @@ if(isset($_POST["register"])){
     $user->setEmail($_POST["email"]);;
     $user->setPassword($_POST["password"]);
 
-    if($userService->getByUsername($username) != null){
-        echo "Sorry, the chosen username already in use!";
+    if($userService->getByUsername($user->getUsername()) != null){
+        echo "Sorry, the chosen username is already in use!";
     }
     else{
         $userService->insert($user);

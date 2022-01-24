@@ -10,15 +10,10 @@ if(isset($_POST["sign-in"])){
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $users[] = $userService->getByUsername($username);
+    $user = $userService->getByUsername($username);
 
-    foreach($users as $user){
-        // $user->jsonSerialize();
-    }
-
-    if($password == $password){
-        $_SESSION["logged-in"] = true;
-        header("location: home");
+    if(password_verify($password, $user->getPassword())){
+        echo "Je bent binnen Klaas!";
     }
 
 }
