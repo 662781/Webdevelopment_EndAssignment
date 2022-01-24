@@ -8,7 +8,7 @@ class User extends Model{
     private string $username;
     private string $email;
     private string $password;
-    private DateTime $created_at;
+    private string $created_at;
 
     //Getters
     public function getId(): int
@@ -31,7 +31,7 @@ class User extends Model{
         return $this->password;
     }
 
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): string
     {
         return $this->created_at;
     }

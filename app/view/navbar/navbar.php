@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <div class="m-2">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
@@ -21,6 +25,13 @@
                     <li class="nav-item"><a href="login" class="nav-link link-dark px-2"><img src="images/person-circle.svg" alt="login"> Login</a></li>
                     <li class="nav-item"><a href="register" class="nav-link link-dark px-2"><img src="images/person-plus-fill.svg" alt="sign up"> Sign up</a></li>
                     <li class="nav-item"><a href="cart" class="nav-link link-dark px-2"><img src="images/cart.svg" alt="cart"> Cart</a></li>
+                    <?php
+                    if(isset($_SESSION["loggedin"]) === true){
+
+                    echo "<li class='nav-item'><a href='profile' class='nav-link link-dark px-2'><img src='images/person-circle.svg' alt='profile'>" . $_SESSION["username"] . "</a></li>";
+    
+                    }
+                    ?>
                 </ul>
             </div>
         </div>

@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once __DIR__ . '/../../model/user.php';
 require_once __DIR__ . '/../../service/userservice.php';
 
@@ -13,7 +12,14 @@ if(isset($_POST["sign-in"])){
     $user = $userService->getByUsername($username);
 
     if(password_verify($password, $user->getPassword())){
-        echo "Je bent binnen Klaas!";
+        session_start();
+        $_SESSION["loggedin"] = true;
+        $_SESSION["username"] = $username;
+        header("location: home");
+        // echo "You are in Mr. KlaasDeTester!";
+    }
+    else{
+        echo "The entered password doesn't match the username, sorry.";
     }
 
 }
@@ -38,7 +44,7 @@ if(isset($_POST["sign-in"])){
                 <a href="home"><img class="mb-4 logo" src="images/pizza_logo.png" alt="Pizza time?"></a>
                 <figcaption>It's Pizza Time!</figcaption>
             </figure>
-            <form>
+            <form function="login" method="post">
                 <h1 class="h3 mb-3 fw-normal title">Please sign in</h1>
 
                 <div class="form-floating">
