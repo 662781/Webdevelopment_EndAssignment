@@ -79,3 +79,8 @@
 .btn-creator a, .btn-creator a:hover{
     color: white;
 }
+
+.logout-btn:hover{
+    color: white;
+    background-color: rgb(250, 104, 78);
+}

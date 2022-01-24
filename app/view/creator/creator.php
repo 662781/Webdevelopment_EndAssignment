@@ -1,8 +1,18 @@
 <?php
-require_once '/app/repository/userrepository.php';
+session_start();
+$username = $_SESSION["username"];
+
+if(isset($_POST["logout"])){
+    $_SESSION["loggedin"] = false;
+    header("location: home");
+}
+
+// Check if the user not logged in, then redirect them to the login page
+if(!isset($_POST["logout"]) &&  $_SESSION["loggedin"]!==true) {
+    header("location: login");
+    exit;
+  }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 

@@ -2,26 +2,37 @@
 require_once __DIR__ . '/../../model/user.php';
 require_once __DIR__ . '/../../service/userservice.php';
 
+session_start();
+// Check if the user is already logged in, if yes then redirect them to the home page
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]===true) {
+  header("location: home");
+  exit;
+}
+
 $userService = new UserService();
+$error = "";
 
-if(isset($_POST["sign-in"])){
+if (isset($_POST["sign-in"])) {
 
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+    if ($_POST["username"] && $_POST["password"] != "") {
 
-    $user = $userService->getByUsername($username);
+        $username = $_POST["username"];
+        $password = $_POST["password"];
 
-    if(password_verify($password, $user->getPassword())){
-        session_start();
-        $_SESSION["loggedin"] = true;
-        $_SESSION["username"] = $username;
-        header("location: home");
-        // echo "You are in Mr. KlaasDeTester!";
+        $user = $userService->getByUsername($username);
+
+        if (password_verify($password, $user->getPassword())) {
+            $_SESSION["loggedin"] = true;
+            $_SESSION["username"] = $username;
+            header("location: home");
+            // echo "You are in Mr. KlaasDeTester2!";
+        } else {
+            $error = "The entered password doesn't match the username, sorry.";
+        }
     }
     else{
-        echo "The entered password doesn't match the username, sorry.";
+        $error = "Please fill in all fields before submitting!";
     }
-
 }
 
 ?>
@@ -59,6 +70,9 @@ if(isset($_POST["sign-in"])){
                 <div class="checkbox mb-3">
                     <label>
                         <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                    <label class="pw_err">
+                        <?php echo $error ?>
                     </label>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit" name="sign-in">Sign in</button>

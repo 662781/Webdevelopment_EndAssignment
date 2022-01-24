@@ -1,4 +1,12 @@
-<!-- Deze inhoud zet je in je VIEW bestand -->
+<?php
+session_start();
+$username = $_SESSION["username"];
+
+if(isset($_POST["logout"])){
+    $_SESSION["loggedin"] = false;
+    header("location: home");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

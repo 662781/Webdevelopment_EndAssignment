@@ -16,3 +16,7 @@ form{
     margin-left: 450px;
     margin-right: 450px;
 }
+
+.pw_err{
+    color: red;
+}
