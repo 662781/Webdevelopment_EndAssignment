@@ -22,8 +22,8 @@ class UserRepository extends Repository {
             $stmt = $this->connection->prepare("SELECT id, username, email, `password`, created_at FROM user WHERE username = ?");
             $stmt->execute([$username]);
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
-            $user = $stmt->fetchAll();
-            return $user;
+            $users = $stmt->fetchAll();
+            return $users;
         } catch (PDOException $e)
         {
             echo $e;

@@ -1,3 +1,29 @@
+<?php
+session_start();
+require_once __DIR__ . '/../../model/user.php';
+require_once __DIR__ . '/../../service/userservice.php';
+
+$userService = new UserService();
+
+if(isset($_POST["sign-in"])){
+
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $users[] = $userService->getByUsername($username);
+
+    foreach($users as $user){
+        // $user->jsonSerialize();
+    }
+
+    if($password == $password){
+        $_SESSION["logged-in"] = true;
+        header("location: home");
+    }
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,12 +47,12 @@
                 <h1 class="h3 mb-3 fw-normal title">Please sign in</h1>
 
                 <div class="form-floating">
-                    <input type="username" class="form-control" id="floatingInput" placeholder="fluffyunicorn420">
-                    <label for="floatingInput">Username</label>
+                    <input type="username" class="form-control" id="username" name="username" placeholder="fluffyunicorn420">
+                    <label for="username">Username</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    <label for="password">Password</label>
                 </div>
 
                 <div class="checkbox mb-3">
@@ -34,7 +60,7 @@
                         <input type="checkbox" value="remember-me"> Remember me
                     </label>
                 </div>
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                <button class="w-100 btn btn-lg btn-primary" type="submit" name="sign-in">Sign in</button>
                 <label class="register"><a href="register">No account? Register here</a></label>
                 <p class="mt-5 mb-3 text-muted">© 2021–2022</p>
             </form>

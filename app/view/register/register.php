@@ -6,7 +6,7 @@ $username = $email = $password = "";
 
 $userService = new UserService();
 
-if(isset($_POST["submit"])){
+if(isset($_POST["register"])){
 
     $user = new User();
     $user->setUsername($_POST["username"]);
@@ -64,7 +64,7 @@ if(isset($_POST["submit"])){
                         <input type="checkbox" value="newsletter"> I would like to recieve the newsletter weekly
                     </label>
                 </div>
-                <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit" id="submit">Register</button>
+                <button class="w-100 btn btn-lg btn-primary" type="submit" name="register" id="submit">Register</button>
                 <label class="login"><a href="login">Already an account? Login here</a></label>
                 <p class="mt-5 mb-3 text-muted">© 2021–2022</p>
             </form>
