@@ -1,17 +1,29 @@
 <?php
 session_start();
-$username = $_SESSION["username"];
 
-if(isset($_POST["logout"])){
-    $_SESSION["loggedin"] = false;
-    header("location: home");
+$username = "";
+
+//Set the username if the session variable exists
+if (isset($_SESSION["username"])) {
+    $username = $_SESSION["username"];
 }
 
-// Check if the user not logged in, then redirect them to the login page
-if(!isset($_POST["logout"]) &&  $_SESSION["loggedin"]!==true) {
-    header("location: login");
-    exit;
-  }
+//If the logout btn is clicked, check if the session variable "loggedin" exists, set it to false & redirect user to the home page
+if (isset($_POST["logout"])) {
+    if (isset($_SESSION["loggedin"])) {
+        $_SESSION["loggedin"] = false;
+        header("location: home");
+    }
+}
+
+if (isset($_SESSION["loggedin"])) {
+    // Check if the user not logged in, then redirect them to the login page
+    if (!isset($_POST["logout"]) &&  $_SESSION["loggedin"] !== true) {
+        header("location: login");
+        exit;
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

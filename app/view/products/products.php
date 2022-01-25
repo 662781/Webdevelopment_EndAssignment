@@ -1,6 +1,11 @@
 <?php
 session_start();
-$username = $_SESSION["username"];
+
+$username = "";
+
+if(isset($_SESSION["username"])){
+    $username = $_SESSION["username"];
+}
 
 if(isset($_POST["logout"])){
     $_SESSION["loggedin"] = false;
