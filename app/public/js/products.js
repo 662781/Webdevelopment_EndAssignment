@@ -1,7 +1,7 @@
 function addToCart(){
 
     //Get the values of the product from products.php
-    
+
 
     //Get the elements to build a cart-item from cart.php & add the right values to the inner html
     var cart = document.getElementById("cart");
@@ -25,7 +25,7 @@ function addToCart(){
 
 
 
-
+    //Just an example of a cart-item in HTML
     // <li class="list-group-item d-flex justify-content-between lh-sm">
     //                         <div>
     //                             <h6 class="my-0">Pizza Margherita</h6>
