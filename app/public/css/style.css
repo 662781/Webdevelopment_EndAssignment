@@ -84,3 +84,7 @@
     color: white;
     background-color: rgb(250, 104, 78);
 }
+
+.cart-item-img{
+    max-width: 35%;
+}

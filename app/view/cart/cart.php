@@ -40,10 +40,11 @@ if(isset($_POST["logout"])){
                         <ul class="list-group mb-3">
                             <li class="list-group-item d-flex justify-content-between lh-sm">
                                 <div>
-                                    <h6 class="my-0">-</h6>
-                                    <small class="text-muted">...</small>
+                                    <h6 class="my-0">Pizza Margherita</h6>
+                                    <small class="text-muted"><i>ingredients</i></small>
                                 </div>
-                                <span class="text-muted">€0</span>
+                                <img src="images/pizza-margarita.png" alt="margherita" class="cart-item-img">
+                                <span class="text-muted">€5,00</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Total (EUR)</span>
@@ -122,7 +123,6 @@ if(isset($_POST["logout"])){
                 <p class="mb-1">© 2021–2022 PizzaTime</p>
             </footer>
         </div>
-
 
         <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 

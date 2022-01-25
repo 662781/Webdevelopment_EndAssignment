@@ -40,7 +40,7 @@ if(isset($_POST["logout"])){
                             <p class="card-text">Tomato, Basil & Cheese</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                                    <button onclick="addToCart(1)" type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                                 </div>
                                 <small class="text-muted">Order Now & Ready + Delivered in 30 min.</small>
                             </div>
@@ -130,6 +130,7 @@ if(isset($_POST["logout"])){
         </div>
     </div>
     <? include_once '../view/footer/footer.php'; ?>
+    <script src="/js/products.js"></script>
 </body>
 
 </html>
