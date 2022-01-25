@@ -1,6 +1,6 @@
 <?php
 
-class Model{
+abstract class Model implements JsonSerializable{
 
 //Gets all the properties (fields)
     public function jsonSerialize():mixed

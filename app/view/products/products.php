@@ -1,7 +1,12 @@
 <?php
+require_once __DIR__ . '/../../model/product.php';
+require_once __DIR__ . '/../../service/productservice.php';
+
 session_start();
 
 $username = "";
+$products = array();
+$pro_serv = new ProductService();
 
 if(isset($_SESSION["username"])){
     $username = $_SESSION["username"];
@@ -11,6 +16,22 @@ if(isset($_POST["logout"])){
     $_SESSION["loggedin"] = false;
     header("location: home");
 }
+
+//Get the products from the db and put them in an array
+$products_db = $pro_serv->getAll();
+
+//Convert every product from the db to a Product object
+// foreach($products_db as $product){
+//     $newProduct = new Product();
+//     $newProduct = $product;
+//     $newProduct->setId($product->getId());
+//     $newProduct->setName($product->getName());
+//     $newProduct->setCat_Id($product->getCat_Id());
+//     $newProduct->setPrice($product->getPrice());
+//     $newProduct->setIngredients($product->getIngredients());
+//     array_push($products, $newProduct);
+// }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,11 +57,11 @@ if(isset($_POST["logout"])){
                     <div class="card shadow-sm">
                         <img src="images/pizza-margarita.png" alt="pizza margarita" class="product-image">
                         <div class="card-body">
-                            <h3 class="product-header">Pizza Margherita</h3>
+                            <h3 class="product-header"><?php $products_db[0]->getName()?></h3>
                             <p class="card-text">Tomato, Basil & Cheese</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button onclick="addToCart(1)" type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                                    <button onclick="addToCart()" type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                                 </div>
                                 <small class="text-muted">Order Now & Ready + Delivered in 30 min.</small>
                             </div>
