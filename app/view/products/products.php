@@ -58,6 +58,7 @@ $products_db = $pro_serv->getAll();
                         <img src="images/pizza-margarita.png" alt="pizza margarita" class="product-image">
                         <div class="card-body">
                             <h3 class="product-header"><?php $products_db[0]->getName()?></h3>
+                            <h4 class="product-price">€5,00</h4>
                             <p class="card-text">Tomato, Basil & Cheese</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
@@ -73,6 +74,7 @@ $products_db = $pro_serv->getAll();
                         <img src="images/pizza-rustica.png" alt="pizza rustica" class="product-image">
                         <div class="card-body">
                             <h3 class="product-header">Pizza Rustica</h3>
+                            <h4 class="product-price">€5,00</h4>
                             <p class="card-text">Tomato, Mozzarella, Spicy Minced Meat, Red Pepper</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
@@ -88,6 +90,7 @@ $products_db = $pro_serv->getAll();
                         <img src="images/pizza-quattro-formaggi.png" alt="pizza quattro formaggi" class="product-image">
                         <div class="card-body">
                             <h3 class="product-header">Pizza Quattro Formaggi</h3>
+                            <h4 class="product-price">€5,00</h4>
                             <p class="card-text">Gouda Cheese, Provolone, Gorgonzola, Parmesan</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
@@ -107,6 +110,7 @@ $products_db = $pro_serv->getAll();
                         <img src="images/pasta-bolognese.png" alt="bolgnese" class="product-image">
                         <div class="card-body">
                             <h3 class="product-header">Pasta Bolognese</h3>
+                            <h4 class="product-price">€5,00</h4>
                             <p class="card-text">Bolognese (Meat Sauce), Parmesan & Parsley</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
@@ -122,6 +126,7 @@ $products_db = $pro_serv->getAll();
                         <img src="images/pasta-conpolpette.png" alt="con polpette" class="product-image">
                         <div class="card-body">
                             <h3 class="product-header">Pasta Con Polpette</h3>
+                            <h4 class="product-price">€5,00</h4>
                             <p class="card-text">Tomato, Cherry Tomato, Little Spicy Meatballs, Cream Sauce, Basil, Parsley, Garlic & Parmesan</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
@@ -137,6 +142,7 @@ $products_db = $pro_serv->getAll();
                         <img src="images/pasta-funghi.png" alt="funghi" class="product-image">
                         <div class="card-body">
                             <h3 class="product-header">Pasta Funghi</h3>
+                            <h4 class="product-price">€5,00</h4>
                             <p class="card-text">Cream Sauce, Mushrooms, Parmesan, Garlic & Parsley</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">

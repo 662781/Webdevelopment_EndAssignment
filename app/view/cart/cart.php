@@ -3,11 +3,11 @@ session_start();
 
 $username = "";
 
-if(isset($_SESSION["username"])){
+if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
 }
 
-if(isset($_POST["logout"])){
+if (isset($_POST["logout"])) {
     $_SESSION["loggedin"] = false;
     header("location: home");
 }
@@ -27,110 +27,107 @@ if(isset($_POST["logout"])){
 
 <body>
     <? include_once '../view/navbar/navbar.php'; ?>
-
-    <body class="bg-light">
-        <div class="container">
-            <main>
-                <div class="row g-5">
-                    <div class="col-md-5 col-lg-4 order-md-last">
-                        <h4 class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="text-primary">Your cart</span>
-                            <span class="badge bg-primary rounded-pill">0</span>
-                        </h4>
-                        <ul class="list-group mb-3">
-                            <li class="list-group-item d-flex justify-content-between lh-sm">
-                                <div>
-                                    <h6 class="my-0">Pizza Margherita</h6>
-                                    <small class="text-muted"><i>ingredients</i></small>
-                                </div>
-                                <img src="images/pizza-margarita.png" alt="margherita" class="cart-item-img">
-                                <span class="text-muted">€5,00</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Total (EUR)</span>
-                                <strong>€0</strong>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-7 col-lg-8">
-                        <h4 class="mb-3">Billing address</h4>
-                        <form class="needs-validation" novalidate="">
-                            <div class="row g-3">
-                                <div class="col-12">
-                                    <label for="username" class="form-label">Username</label>
-                                    <div class="input-group has-validation">
-                                        <span class="input-group-text">@</span>
-                                        <input type="text" class="form-control" id="username" placeholder="Username" required="">
-                                        <div class="invalid-feedback">
-                                            Your username is required.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                                    <div class="invalid-feedback">
-                                        Please enter a valid email address for shipping updates.
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="address" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="address" placeholder="Cloud St 4" required="">
-                                    <div class="invalid-feedback">
-                                        Please enter your shipping address.
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <label for="zip" class="form-label">Postal Code</label>
-                                    <input type="text" class="form-control" id="zip" placeholder="1234AB" required="">
-                                    <div class="invalid-feedback">
-                                        Postal Code required.
-                                    </div>
-                                </div>
+    <div class="container">
+        <main>
+            <div class="row g-5">
+                <div class="col-md-5 col-lg-4 order-md-last">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-primary">Your cart</span>
+                        <span class="badge bg-primary rounded-pill">0</span>
+                    </h4>
+                    <ul class="list-group mb-3" id="cart">
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">Pizza Margherita</h6>
+                                <small class="text-muted"><i>ingredients</i></small>
                             </div>
-
-                            <hr class="my-4">
-
-                            <h4 class="mb-3">Payment</h4>
-
-                            <div class="my-3">
-                                <div class="form-check">
-                                    <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required="">
-                                    <label class="form-check-label" for="credit">IDEAL</label>
-                                </div>
-                                <div class="form-check">
-                                    <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required="">
-                                    <label class="form-check-label" for="debit">PayPal</label>
-                                </div>
-                                <div class="form-check">
-                                    <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required="">
-                                    <label class="form-check-label" for="paypal">Monopoly Money</label>
-                                </div>
-                            </div>
-
-                            <hr class="my-4">
-
-                            <button class="w-100 btn btn-primary btn-lg" type="submit">Commence Payment</button>
-                        </form>
-                    </div>
+                            <img src="images/pizza-margarita.png" alt="margherita" class="cart-item-img">
+                            <span class="text-muted">€5,00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total (EUR)</span>
+                            <strong>€0</strong>
+                        </li>
+                    </ul>
                 </div>
-            </main>
+                <div class="col-md-7 col-lg-8">
+                    <h4 class="mb-3">Billing address</h4>
+                    <form class="needs-validation" novalidate="">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="username" class="form-label">Username</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text">@</span>
+                                    <input type="text" class="form-control" id="username" placeholder="Username" required="">
+                                    <div class="invalid-feedback">
+                                        Your username is required.
+                                    </div>
+                                </div>
+                            </div>
 
-            <footer class="my-5 pt-5 text-muted text-center text-small">
-                <p class="mb-1">© 2021–2022 PizzaTime</p>
-            </footer>
-        </div>
+                            <div class="col-12">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                                <div class="invalid-feedback">
+                                    Please enter a valid email address for shipping updates.
+                                </div>
+                            </div>
 
-        <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+                            <div class="col-12">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="address" placeholder="Cloud St 4" required="">
+                                <div class="invalid-feedback">
+                                    Please enter your shipping address.
+                                </div>
+                            </div>
 
-        <script src="form-validation.js"></script>
+                            <div class="col-md-3">
+                                <label for="zip" class="form-label">Postal Code</label>
+                                <input type="text" class="form-control" id="zip" placeholder="1234AB" required="">
+                                <div class="invalid-feedback">
+                                    Postal Code required.
+                                </div>
+                            </div>
+                        </div>
 
+                        <hr class="my-4">
 
-    </body>
+                        <h4 class="mb-3">Payment</h4>
+
+                        <div class="my-3">
+                            <div class="form-check">
+                                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required="">
+                                <label class="form-check-label" for="credit">IDEAL</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required="">
+                                <label class="form-check-label" for="debit">PayPal</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required="">
+                                <label class="form-check-label" for="paypal">Monopoly Money</label>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">Commence Payment</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">© 2021–2022 PizzaTime</p>
+        </footer>
+    </div>
+
     <? include_once '../view/footer/footer.php'; ?>
+
+    <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="form-validation.js"></script>
+    <script src="/js/products.js"></script>
+
 </body>
 
 </html>
