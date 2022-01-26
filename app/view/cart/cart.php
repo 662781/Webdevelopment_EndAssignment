@@ -1,7 +1,14 @@
 <?php
+require_once __DIR__ . '/../../model/cart.php';
+require_once __DIR__ . '/../../model/cart-item.php';
 session_start();
 
 $username = "";
+$cart;
+
+if(isset($_SESSION["cart"])){
+    $cart = $_SESSION["cart"];
+}
 
 if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
@@ -11,6 +18,7 @@ if (isset($_POST["logout"])) {
     $_SESSION["loggedin"] = false;
     header("location: home");
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,14 +44,17 @@ if (isset($_POST["logout"])) {
                         <span class="badge bg-primary rounded-pill">0</span>
                     </h4>
                     <ul class="list-group mb-3" id="cart">
+                        <?php foreach($cart->getItems() as $item){?>
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <div>
-                                <h6 class="my-0">Pizza Margherita</h6>
-                                <small class="text-muted"><i>ingredients</i></small>
+                                <h6 class="my-0"><? $item->getProduct()->getName()?></h6>
+                                <small class="text-muted"><i><? $item->getProduct()->getIngredients()?></i></small>
                             </div>
+                            <h4>x<? $item->getAmount()?></h4>
                             <img src="images/pizza-margarita.png" alt="margherita" class="cart-item-img">
-                            <span class="text-muted">€5,00</span>
+                            <span class="text-muted">€<? $item->getProduct()->getPrice()?></span>
                         </li>
+                        <?php }?>
                         <li class="list-group-item d-flex justify-content-between">
                             <span>Total (EUR)</span>
                             <strong>€0</strong>

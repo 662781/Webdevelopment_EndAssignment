@@ -1,24 +1,47 @@
 <?php
 require_once __DIR__ . '/../../model/product.php';
+require_once __DIR__ . '/../../model/cart.php';
+require_once __DIR__ . '/../../model/cart-item.php';
 require_once __DIR__ . '/../../service/productservice.php';
 
 session_start();
 
 $username = "";
+$product = new Product();
+$cart;
 $products = array();
 $pro_serv = new ProductService();
 
-if(isset($_SESSION["username"])){
+if(isset($_SESSION["cart"])){
+    $cart = $_SESSION["cart"];
+}
+
+if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
 }
 
-if(isset($_POST["logout"])){
+if (isset($_POST["logout"])) {
     $_SESSION["loggedin"] = false;
     header("location: home");
 }
 
+if(isset($_POST["add-item"])){
+    $product->setName($_POST["product-name"]);
+    $product->setPrice((float) $_POST["product-price"]);
+    $product->setIngredients($_POST["product-ingredients"]);
+
+    $cartItem = new CartItem($product);
+    $cartItem->setAmount($_POST["amount"]);
+
+    $cart->addItem($cartItem);
+
+    header("location: cart");
+}
+
+
+
 //Get the products from the db and put them in an array
-$products_db = $pro_serv->getAll();
+// $products_db = $pro_serv->getAll();
 
 //Convert every product from the db to a Product object
 // foreach($products_db as $product){
@@ -54,20 +77,23 @@ $products_db = $pro_serv->getAll();
             <h1 class="product-type">Pizza</h1>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="images/pizza-margarita.png" alt="pizza margarita" class="product-image">
-                        <div class="card-body">
-                            <h3 class="product-header"><?php $products_db[0]->getName()?></h3>
-                            <h4 class="product-price">€5,00</h4>
-                            <p class="card-text">Tomato, Basil & Cheese</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button onclick="addToCart()" type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                    <form action="products" method="post">
+                        <div class="card shadow-sm">
+                            <img src="images/pizza-margarita.png" alt="pizza margarita" class="product-image">
+                            <div class="card-body">
+                                <h3 class="product-header" name="product-name">Pizza Margherita</h3>    
+                                <h4>€</h4><h4 class="product-price" name="product-price">5.00</h4>
+                                <p class="card-text" name="product-ingredients">Tomato, Basil & Cheese</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="submit" name="add-item" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                                    </div>
+                                    <input type="number" class="product-amount" name="amount" value="1" min="1" max="10">
+                                    <small class="text-muted">Order Now & Ready + Delivered in 30 min.</small>
                                 </div>
-                                <small class="text-muted">Order Now & Ready + Delivered in 30 min.</small>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
@@ -80,6 +106,7 @@ $products_db = $pro_serv->getAll();
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                                 </div>
+                                <input type="number" class="product-amount" name="amount" min="1" max="10">
                                 <small class="text-muted">Order Now & Ready + Delivered in 30 min.</small>
                             </div>
                         </div>
@@ -96,6 +123,7 @@ $products_db = $pro_serv->getAll();
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                                 </div>
+                                <input type="number" class="product-amount" name="amount" min="1" max="10">
                                 <small class="text-muted">Order Now & Ready + Delivered in 30 min.</small>
                             </div>
                         </div>
@@ -116,6 +144,7 @@ $products_db = $pro_serv->getAll();
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                                 </div>
+                                <input type="number" class="product-amount" name="amount" min="1" max="10">
                                 <small class="text-muted">Freshly made & Delivered within 60 min.</small>
                             </div>
                         </div>
@@ -132,6 +161,7 @@ $products_db = $pro_serv->getAll();
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                                 </div>
+                                <input type="number" class="product-amount" name="amount" min="1" max="10">
                                 <small class="text-muted">Freshly made & Delivered within 60 min.</small>
                             </div>
                         </div>
@@ -148,6 +178,7 @@ $products_db = $pro_serv->getAll();
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                                 </div>
+                                <input type="number" class="product-amount" name="amount" min="1" max="10">
                                 <small class="text-muted">Freshly made & Delivered within 60 min.</small>
                             </div>
                         </div>

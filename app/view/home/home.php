@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../model/cart.php';
 session_start();
 
 $username = "";
@@ -11,6 +12,10 @@ if(isset($_POST["logout"])){
     $_SESSION["loggedin"] = false;
     header("location: home");
 }
+
+//Create shopping cart when user enters the website
+$_SESSION["cart"] = new Cart();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
