@@ -37,34 +37,33 @@ class Product extends Model{
     }
 
     //Setters
-    public function setId(int $id): self
+    public function setId(int $id)
     {
         $this->id = $id;
-        return $this;
+        
     }
 
-    public function setName(string $name): self
+    public function setName(string $name)
     {
         $this->name = $name;
-        return $this;
+        
     }
 
-    public function setCat_Id(int $cat_id): self
+    public function setCat_Id(int $cat_id)
     {
         $this->cat_id = $cat_id;
-        return $this;
+        
     }
 
-    public function setPrice(float $price): self
+    public function setPrice(float $price)
     {
         $this->price = round($price, 2);
-        return $this;
+        
     }
 
-    public function setIngredients(string $ingredients): self
-    {
+    public function setIngredients(string $ingredients){
         $this->ingredients = $ingredients;
-        return $this;
+        
     }
 
 }

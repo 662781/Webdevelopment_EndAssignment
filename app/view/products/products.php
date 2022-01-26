@@ -7,10 +7,13 @@ require_once __DIR__ . '/../../service/productservice.php';
 session_start();
 
 $username = "";
-$product_id;
+$productId;
 $product;
+$productList;
 $cart;
 $pro_serv = new ProductService();
+
+$productList = $pro_serv->getAll(); 
 
 if (isset($_SESSION["cart"])) {
     $cart = $_SESSION["cart"];
@@ -26,9 +29,9 @@ if (isset($_POST["logout"])) {
 }
 
 if (isset($_POST["add-item"])) {
-    $product_id = $_POST["product-id"];
+    $productId = $_POST["product-id"];
 
-    $product = $pro_serv->getByProductId($product_id);
+    $product = $pro_serv->getByProductId($productId);
 
     if ($product !== null) {
         $cartItem = new CartItem($product);
@@ -62,13 +65,14 @@ if (isset($_POST["add-item"])) {
         <div class="container">
             <h1 class="product-type">Pizza</h1>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <?php foreach($productList as $prod){ if($prod->getCat_Id() == 1){?>
                 <div class="col">
                     <div class="card shadow-sm">
                         <img src="images/pizza-margarita.png" alt="pizza margarita" class="product-image">
                         <div class="card-body">
-                            <h3 class="product-header">Pizza Margherita</h3>
-                            <h4 class="product-price">€5,00</h4>
-                            <p class="card-text">Tomato, Basil & Cheese</p>
+                            <h3 class="product-header"><? echo $prod->getName() ?></h3>
+                            <h4 class="product-price">€<? echo $prod->getPrice() ?></h4>
+                            <p class="card-text"><? echo $prod->getIngredients() ?></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <form action="products" method="post">
                                     <div class="btn-group">
@@ -82,7 +86,8 @@ if (isset($_POST["add-item"])) {
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <?php }}?>
+                <!-- <div class="col">
                     <div class="card shadow-sm">
                         <img src="images/pizza-rustica.png" alt="pizza rustica" class="product-image">
                         <div class="card-body">
@@ -121,18 +126,19 @@ if (isset($_POST["add-item"])) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <h1 class="product-type">Pasta</h1>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <?php foreach($productList as $prod){ if($prod->getCat_Id() == 2){?>
                 <div class="col">
                     <div class="card shadow-sm">
                         <img src="images/pasta-bolognese.png" alt="bolgnese" class="product-image">
                         <div class="card-body">
-                            <h3 class="product-header">Pasta Bolognese</h3>
-                            <h4 class="product-price">€5,00</h4>
-                            <p class="card-text">Bolognese (Meat Sauce), Parmesan & Parsley</p>
+                            <h3 class="product-header"><? echo $prod->getName() ?></h3>
+                            <h4 class="product-price">€<? echo $prod->getPrice() ?></h4>
+                            <p class="card-text"><? echo $prod->getIngredients() ?></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <form action="products" method="post">
                                     <div class="btn-group">
@@ -146,7 +152,8 @@ if (isset($_POST["add-item"])) {
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <?php }}?>
+                <!-- <div class="col">
                     <div class="card shadow-sm">
                         <img src="images/pasta-conpolpette.png" alt="con polpette" class="product-image">
                         <div class="card-body">
@@ -185,7 +192,7 @@ if (isset($_POST["add-item"])) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
