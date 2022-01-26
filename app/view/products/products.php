@@ -7,12 +7,12 @@ require_once __DIR__ . '/../../service/productservice.php';
 session_start();
 
 $username = "";
-$product = new Product();
+$product_id;
+$product;
 $cart;
-$products = array();
 $pro_serv = new ProductService();
 
-if(isset($_SESSION["cart"])){
+if (isset($_SESSION["cart"])) {
     $cart = $_SESSION["cart"];
 }
 
@@ -25,35 +25,22 @@ if (isset($_POST["logout"])) {
     header("location: home");
 }
 
-if(isset($_POST["add-item"])){
-    $product->setName($_POST["product-name"]);
-    $product->setPrice((float) $_POST["product-price"]);
-    $product->setIngredients($_POST["product-ingredients"]);
+if (isset($_POST["add-item"])) {
+    $product_id = $_POST["product-id"];
 
-    $cartItem = new CartItem($product);
-    $cartItem->setAmount($_POST["amount"]);
+    $product = $pro_serv->getByProductId($product_id);
 
-    $cart->addItem($cartItem);
+    if ($product !== null) {
+        $cartItem = new CartItem($product);
+        $cartItem->setAmount($_POST["amount"]);
 
-    header("location: cart");
+        $cart->addItem($cartItem);
+
+        header("location: cart");
+    }
 }
 
 
-
-//Get the products from the db and put them in an array
-// $products_db = $pro_serv->getAll();
-
-//Convert every product from the db to a Product object
-// foreach($products_db as $product){
-//     $newProduct = new Product();
-//     $newProduct = $product;
-//     $newProduct->setId($product->getId());
-//     $newProduct->setName($product->getName());
-//     $newProduct->setCat_Id($product->getCat_Id());
-//     $newProduct->setPrice($product->getPrice());
-//     $newProduct->setIngredients($product->getIngredients());
-//     array_push($products, $newProduct);
-// }
 
 ?>
 <!DOCTYPE html>
@@ -73,27 +60,27 @@ if(isset($_POST["add-item"])){
     <? include_once '../view/navbar/navbar.php'; ?>
     <div class="album py-5 bg-light">
         <div class="container">
-
             <h1 class="product-type">Pizza</h1>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col">
-                    <form action="products" method="post">
-                        <div class="card shadow-sm">
-                            <img src="images/pizza-margarita.png" alt="pizza margarita" class="product-image">
-                            <div class="card-body">
-                                <h3 class="product-header" name="product-name">Pizza Margherita</h3>    
-                                <h4>€</h4><h4 class="product-price" name="product-price">5.00</h4>
-                                <p class="card-text" name="product-ingredients">Tomato, Basil & Cheese</p>
-                                <div class="d-flex justify-content-between align-items-center">
+                    <div class="card shadow-sm">
+                        <img src="images/pizza-margarita.png" alt="pizza margarita" class="product-image">
+                        <div class="card-body">
+                            <h3 class="product-header">Pizza Margherita</h3>
+                            <h4 class="product-price">€5,00</h4>
+                            <p class="card-text">Tomato, Basil & Cheese</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <form action="products" method="post">
                                     <div class="btn-group">
                                         <button type="submit" name="add-item" class="btn btn-sm btn-outline-primary">Add to cart</button>
                                     </div>
+                                    <input type="hidden" name="product-id" value="1">
                                     <input type="number" class="product-amount" name="amount" value="1" min="1" max="10">
-                                    <small class="text-muted">Order Now & Ready + Delivered in 30 min.</small>
-                                </div>
+                                </form>
+                                <small class="text-muted">Order Now & Ready + Delivered in 30 min.</small>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
@@ -103,10 +90,13 @@ if(isset($_POST["add-item"])){
                             <h4 class="product-price">€5,00</h4>
                             <p class="card-text">Tomato, Mozzarella, Spicy Minced Meat, Red Pepper</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
-                                </div>
-                                <input type="number" class="product-amount" name="amount" min="1" max="10">
+                                <form action="products" method="post">
+                                    <div class="btn-group">
+                                        <button type="submit" name="add-item" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                                    </div>
+                                    <input type="hidden" name="product-id" value="2">
+                                    <input type="number" class="product-amount" name="amount" value="1" min="1" max="10">
+                                </form>
                                 <small class="text-muted">Order Now & Ready + Delivered in 30 min.</small>
                             </div>
                         </div>
@@ -120,10 +110,13 @@ if(isset($_POST["add-item"])){
                             <h4 class="product-price">€5,00</h4>
                             <p class="card-text">Gouda Cheese, Provolone, Gorgonzola, Parmesan</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
-                                </div>
-                                <input type="number" class="product-amount" name="amount" min="1" max="10">
+                                <form action="products" method="post">
+                                    <div class="btn-group">
+                                        <button type="submit" name="add-item" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                                    </div>
+                                    <input type="hidden" name="product-id" value="3">
+                                    <input type="number" class="product-amount" name="amount" value="1" min="1" max="10">
+                                </form>
                                 <small class="text-muted">Order Now & Ready + Delivered in 30 min.</small>
                             </div>
                         </div>
@@ -141,10 +134,13 @@ if(isset($_POST["add-item"])){
                             <h4 class="product-price">€5,00</h4>
                             <p class="card-text">Bolognese (Meat Sauce), Parmesan & Parsley</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
-                                </div>
-                                <input type="number" class="product-amount" name="amount" min="1" max="10">
+                                <form action="products" method="post">
+                                    <div class="btn-group">
+                                        <button type="submit" name="add-item" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                                    </div>
+                                    <input type="hidden" name="product-id" value="4">
+                                    <input type="number" class="product-amount" name="amount" value="1" min="1" max="10">
+                                </form>
                                 <small class="text-muted">Freshly made & Delivered within 60 min.</small>
                             </div>
                         </div>
@@ -158,10 +154,13 @@ if(isset($_POST["add-item"])){
                             <h4 class="product-price">€5,00</h4>
                             <p class="card-text">Tomato, Cherry Tomato, Little Spicy Meatballs, Cream Sauce, Basil, Parsley, Garlic & Parmesan</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
-                                </div>
-                                <input type="number" class="product-amount" name="amount" min="1" max="10">
+                                <form action="products" method="post">
+                                    <div class="btn-group">
+                                        <button type="submit" name="add-item" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                                    </div>
+                                    <input type="hidden" name="product-id" value="5">
+                                    <input type="number" class="product-amount" name="amount" value="1" min="1" max="10">
+                                </form>
                                 <small class="text-muted">Freshly made & Delivered within 60 min.</small>
                             </div>
                         </div>
@@ -175,10 +174,13 @@ if(isset($_POST["add-item"])){
                             <h4 class="product-price">€5,00</h4>
                             <p class="card-text">Cream Sauce, Mushrooms, Parmesan, Garlic & Parsley</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
-                                </div>
-                                <input type="number" class="product-amount" name="amount" min="1" max="10">
+                                <form action="products" method="post">
+                                    <div class="btn-group">
+                                        <button type="submit" name="add-item" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                                    </div>
+                                    <input type="hidden" name="product-id" value="6">
+                                    <input type="number" class="product-amount" name="amount" value="1" min="1" max="10">
+                                </form>
                                 <small class="text-muted">Freshly made & Delivered within 60 min.</small>
                             </div>
                         </div>

@@ -14,7 +14,10 @@ if(isset($_POST["logout"])){
 }
 
 //Create shopping cart when user enters the website
-$_SESSION["cart"] = new Cart();
+if(!isset($_SESSION["cart"])){
+    $_SESSION["cart"] = new Cart();
+}
+
 
 ?>
 <!DOCTYPE html>

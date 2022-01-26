@@ -5,9 +5,16 @@ session_start();
 
 $username = "";
 $cart;
+$product_id;
+$total_price = 0;
 
-if(isset($_SESSION["cart"])){
+if (isset($_SESSION["cart"])) {
+
     $cart = $_SESSION["cart"];
+
+    foreach ($cart->getItems() as $item) {
+        $total_price += ($item->getProduct()->getPrice() * $item->getAmount());
+    }
 }
 
 if (isset($_SESSION["username"])) {
@@ -18,6 +25,17 @@ if (isset($_POST["logout"])) {
     $_SESSION["loggedin"] = false;
     header("location: home");
 }
+
+if (isset($_POST["del-item"])) {
+    $product_id = $_POST["product-id"];
+    foreach ($cart->getItems() as $item) {
+        if ($item->getProduct()->getId() == $product_id) {
+            $cart->delItem($item);
+            header("location: cart");
+        }
+    }
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -41,23 +59,35 @@ if (isset($_POST["logout"])) {
                 <div class="col-md-5 col-lg-4 order-md-last">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-primary">Your cart</span>
-                        <span class="badge bg-primary rounded-pill">0</span>
+                        <span class="badge bg-primary rounded-pill"><? echo count($cart->getItems()) ?></span>
                     </h4>
                     <ul class="list-group mb-3" id="cart">
-                        <?php foreach($cart->getItems() as $item){?>
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0"><? $item->getProduct()->getName()?></h6>
-                                <small class="text-muted"><i><? $item->getProduct()->getIngredients()?></i></small>
-                            </div>
-                            <h4>x<? $item->getAmount()?></h4>
-                            <img src="images/pizza-margarita.png" alt="margherita" class="cart-item-img">
-                            <span class="text-muted">€<? $item->getProduct()->getPrice()?></span>
-                        </li>
-                        <?php }?>
+                        <?php foreach ($cart->getItems() as $item) { ?>
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <!-- <img src="images/pizza-margarita.png" alt="margherita" class="cart-item-img"> -->
+                                <div>
+                                    <h6 class="my-0"><? echo $item->getProduct()->getName() . " " . "(x"  . $item->getAmount() . ")" ?></h6>
+                                    <small class="text-muted"><i><? echo $item->getProduct()->getIngredients() ?></i></small>
+                                </div>
+                                <div>
+                                    <span class="text-muted">€<? echo $item->getProduct()->getPrice() * $item->getAmount(); ?></span>
+                                    <form action="cart" method="post">
+                                        <div class="btn-group">
+                                            <input type="hidden" name="product-id" value="<? echo $item->getProduct()->getId() ?>">
+                                            <button type="submit" name="del-item" class="btn btn-sm btn-danger btn-delete">Delete</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                        <?php } ?>
+                        <?php if ($cart->getItems() == null) { ?>
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                Your cart is empty
+                            </li>
+                        <?php } ?>
                         <li class="list-group-item d-flex justify-content-between">
                             <span>Total (EUR)</span>
-                            <strong>€0</strong>
+                            <strong>€ <?php echo $total_price ?></strong>
                         </li>
                     </ul>
                 </div>
@@ -127,10 +157,6 @@ if (isset($_POST["logout"])) {
                 </div>
             </div>
         </main>
-
-        <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">© 2021–2022 PizzaTime</p>
-        </footer>
     </div>
 
     <? include_once '../view/footer/footer.php'; ?>

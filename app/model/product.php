@@ -57,7 +57,7 @@ class Product extends Model{
 
     public function setPrice(float $price): self
     {
-        $this->price = $price;
+        $this->price = round($price, 2);
         return $this;
     }
 
