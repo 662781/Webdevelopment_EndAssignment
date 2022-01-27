@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 25 jan 2022 om 15:34
+-- Gegenereerd op: 27 jan 2022 om 13:41
 -- Serverversie: 10.6.5-MariaDB-1:10.6.5+maria~focal
 -- PHP-versie: 7.4.25
 
@@ -58,20 +58,22 @@ CREATE TABLE `product` (
   `name` varchar(30) NOT NULL,
   `category_id` int(11) NOT NULL,
   `price` float NOT NULL,
-  `ingredients` varchar(480) NOT NULL
+  `ingredients` varchar(480) NOT NULL,
+  `img_path` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `product`
 --
 
-INSERT INTO `product` (`id`, `name`, `category_id`, `price`, `ingredients`) VALUES
-(1, 'Pizza Margherita', 2, 5.5, 'Tomato,Basil,Cheese'),
-(2, 'Pizza Rustica', 2, 6.5, 'Tomato,Mozzarella,Spicy Minced Meat,Red Pepper'),
-(3, 'Pizza Quattro Formaggi', 2, 7.5, 'Gouda Cheese,Provolone,Gorgonzola,Parmesan'),
-(4, 'Pasta Bolognese', 1, 7.5, 'Bolognese (Meat Sauce),Parmesan,Parsley'),
-(5, 'Pasta Con Polpette', 1, 8.5, 'Tomato,Cherry Tomato,Little Spicy Meatballs,Cream Sauce, Basil,Parsley,Garlic,Parmesan'),
-(6, 'Pasta Funghi', 1, 8, 'Cream Sauce,Mushrooms,Parmesan,Garlic,Parsley');
+INSERT INTO `product` (`id`, `name`, `category_id`, `price`, `ingredients`, `img_path`) VALUES
+(1, 'Pizza Margherita', 2, 5.5, 'Tomato, Basil & Cheese', 'images/pizza-margarita.png'),
+(2, 'Pizza Rustica', 2, 6.5, 'Tomato, Mozzarella, Spicy Minced Meat & Red Pepper', 'images/pizza-rustica.png'),
+(3, 'Pizza Quattro Formaggi', 2, 7.5, 'Gouda Cheese, Provolone, Gorgonzola & Parmesan', 'images/pizza-quattro-formaggi.png'),
+(4, 'Pasta Bolognese', 1, 7.5, 'Bolognese (Meat Sauce), Parmesan & Parsley', 'images/pasta-bolognese.png'),
+(5, 'Pasta Con Polpette', 1, 8.5, 'Tomato, Cherry Tomato, Little Spicy Meatballs, Cream Sauce, Basil, Parsley, Garlic & Parmesan', 'images/pasta-conpolpette.png'),
+(6, 'Pasta Funghi', 1, 8, 'Cream Sauce, Mushrooms, Parmesan, Garlic & Parsley', 'images/pasta-funghi.png'),
+(7, 'Custom Pizza', 3, 0, '?', '');
 
 -- --------------------------------------------------------
 
@@ -91,7 +93,8 @@ CREATE TABLE `product_cat` (
 
 INSERT INTO `product_cat` (`id`, `name`, `description`) VALUES
 (1, 'pasta', 'This category is all about pasta!'),
-(2, 'pizza', 'This category is all about pizza!');
+(2, 'pizza', 'This category is all about pizza!'),
+(3, 'custom-pizza', 'This category is all about your custom pizzas!');
 
 -- --------------------------------------------------------
 
@@ -177,13 +180,13 @@ ALTER TABLE `order_line`
 -- AUTO_INCREMENT voor een tabel `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT voor een tabel `product_cat`
 --
 ALTER TABLE `product_cat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT voor een tabel `user`
