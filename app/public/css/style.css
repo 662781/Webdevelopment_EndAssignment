@@ -51,9 +51,8 @@
     color: white;
 }
 
-.product-image{
-    max-width: 30%;
-    margin-right: 5%;
+.product-page-image{
+    max-width: 500px;
 }
 
 .product-type, #creator-header{
@@ -95,5 +94,10 @@
 }
 
 .ingredients{
-    max-width: 60%;
+    max-width: 70%;
+}
+
+.product-image{
+    max-width: 30%;
+    margin-right: 5%;
 }

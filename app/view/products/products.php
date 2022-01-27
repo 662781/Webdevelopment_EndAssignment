@@ -75,7 +75,7 @@ if (isset($_POST["add-item"])) {
                 ?>
                         <div class="col">
                             <div class="card shadow-sm">
-                                <img src=<? echo $prod->getImgPath() ?> alt="<? $prod->getName() ?>" class="product-image">
+                                <img src=<? echo $prod->getImgPath() ?> alt="<? $prod->getName() ?>" class="product-page-image">
                                 <div class="card-body">
                                     <h3 class="product-header"><? echo $prod->getName() ?></h3>
                                     <h4 class="product-price">€<? echo $prod->getPrice() ?></h4>
@@ -104,7 +104,7 @@ if (isset($_POST["add-item"])) {
                     if ($prod->getCatId() == 1) { ?>
                         <div class="col">
                             <div class="card shadow-sm">
-                                <img src=<? echo $prod->getImgPath() ?> alt="<? $prod->getName() ?>" class="product-image">
+                                <img src=<? echo $prod->getImgPath() ?> alt="<? $prod->getName() ?>" class="product-page-image">
                                 <div class="card-body">
                                     <h3 class="product-header"><? echo $prod->getName() ?></h3>
                                     <h4 class="product-price">€<? echo $prod->getPrice() ?></h4>

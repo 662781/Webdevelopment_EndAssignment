@@ -4,21 +4,21 @@ session_start();
 
 $username = "";
 
-if(!isset($_SESSION["loggedin"])){
+if (!isset($_SESSION["loggedin"])) {
     $_SESSION["loggedin"] = false;
 }
 
-if(isset($_SESSION["username"])){
+if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
 }
 
-if(isset($_POST["logout"])){
+if (isset($_POST["logout"])) {
     $_SESSION["loggedin"] = false;
     header("location: home");
 }
 
 //Create shopping cart when user enters the website
-if(!isset($_SESSION["cart"])){
+if (!isset($_SESSION["cart"])) {
     $_SESSION["cart"] = new Cart();
 }
 
@@ -112,10 +112,9 @@ if(!isset($_SESSION["cart"])){
                             <title>Placeholder</title>
                             <rect width="100%" height="100%" fill="#777"></rect>
                         </svg>
-
-                        <div class="container">
+                        
+                        <div class="container">      
                             <div class="carousel-caption text-start">
-                                <img src="images/pizza_logo.png" alt="pizza_logo">
                                 <h1>Join the club</h1>
                                 <p>Create an account and begin creating your own pizzas!</p>
                                 <p><a class="btn btn-lg btn-primary" href="register">Sign up today</a></p>

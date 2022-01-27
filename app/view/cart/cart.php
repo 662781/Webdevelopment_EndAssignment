@@ -84,7 +84,7 @@ if (isset($_POST["del-item"])) {
                         <?php } ?>
                         <?php if ($cart->getItems() == null) { ?>
                             <li class="list-group-item d-flex justify-content-between lh-sm">
-                                Your cart is empty
+                                <i> Your cart is empty </i>
                             </li>
                         <?php } ?>
                         <li class="list-group-item d-flex justify-content-between">
