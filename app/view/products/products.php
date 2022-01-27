@@ -15,6 +15,11 @@ $productService = new ProductService();
 
 $productList = $productService->getAll();
 
+foreach($productList as $prod){
+    $price = $prod->getPrice();
+    $prod->setPrice($price);
+}
+
 if (isset($_SESSION["cart"])) {
     $cart = $_SESSION["cart"];
 }
@@ -80,7 +85,7 @@ if (isset($_POST["add-item"])) {
                                             <div class="btn-group">
                                                 <button type="submit" name="add-item" class="btn btn-sm btn-outline-primary">Add to cart</button>
                                             </div>
-                                            <input type="hidden" name="product-id" value="1">
+                                            <input type="hidden" name="product-id" value=<?php echo $prod->getId()?>>
                                             <input type="number" class="product-amount" name="amount" value="1" min="1" max="10">
                                         </form>
                                         <small class="text-muted">Order Now & Ready + Delivered in 30 min.</small>
@@ -109,7 +114,7 @@ if (isset($_POST["add-item"])) {
                                             <div class="btn-group">
                                                 <button type="submit" name="add-item" class="btn btn-sm btn-outline-primary">Add to cart</button>
                                             </div>
-                                            <input type="hidden" name="product-id" value="4">
+                                            <input type="hidden" name="product-id" value=<?php echo $prod->getId()?>>
                                             <input type="number" class="product-amount" name="amount" value="1" min="1" max="10">
                                         </form>
                                         <small class="text-muted">Freshly made & Delivered within 60 min.</small>

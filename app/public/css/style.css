@@ -52,7 +52,8 @@
 }
 
 .product-image{
-    max-width: 500px;
+    max-width: 30%;
+    margin-right: 5%;
 }
 
 .product-type, #creator-header{
@@ -91,4 +92,8 @@
 
 .product-amount{
     max-width: 25%;
+}
+
+.ingredients{
+    max-width: 60%;
 }

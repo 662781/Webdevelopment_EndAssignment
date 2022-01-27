@@ -64,14 +64,16 @@ if (isset($_POST["del-item"])) {
                     <ul class="list-group mb-3" id="cart">
                         <?php foreach ($cart->getItems() as $item) { ?>
                             <li class="list-group-item d-flex justify-content-between lh-sm">
-                                <!-- <img src="images/pizza-margarita.png" alt="margherita" class="cart-item-img"> -->
+                                <img src=<? echo $item->getProduct()->getImgPath() ?> alt="<? $item->getProduct()->getName() ?>" class="product-image">
                                 <div>
                                     <h6 class="my-0"><? echo $item->getProduct()->getName() . " " . "(x"  . $item->getAmount() . ")" ?></h6>
-                                    <small class="text-muted"><i><? echo $item->getProduct()->getIngredients() ?></i></small>
+                                    <div class="ingredients">
+                                        <small class="text-muted"><i><? echo $item->getProduct()->getIngredients() ?></i></small>
+                                    </div>
                                 </div>
                                 <div>
-                                    <span class="text-muted">€<? echo $item->getProduct()->getPrice() * $item->getAmount(); ?></span>
-                                    <form action="cart" method="post">
+                                    <strong>€<? echo $item->getProduct()->getPrice() * $item->getAmount(); ?></strong>
+                                    <form class="mt-5" action="cart" method="post">
                                         <div class="btn-group">
                                             <input type="hidden" name="product-id" value="<? echo $item->getProduct()->getId() ?>">
                                             <button type="submit" name="del-item" class="btn btn-sm btn-danger btn-delete">Delete</button>
