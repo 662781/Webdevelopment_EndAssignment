@@ -6,10 +6,12 @@ class Product extends Model{
     //Fields
     private int $id;
     private string $name;
-    private int $cat_id;
+    private int $category_id;
     private float $price;
     private string $ingredients;
+    private string $img_path;
 
+    
     //Getters
     public function getId(): int
     {
@@ -21,9 +23,9 @@ class Product extends Model{
         return $this->name;
     }
 
-    public function getCat_Id(): int
+    public function getCatId(): int
     {
-        return $this->cat_id;
+        return $this->category_id;
     }
 
     public function getPrice(): float
@@ -34,6 +36,11 @@ class Product extends Model{
     public function getIngredients(): string
     {
         return $this->ingredients;
+    }
+
+    public function getImgPath(): string
+    {
+        return $this->img_path;
     }
 
     //Setters
@@ -49,9 +56,9 @@ class Product extends Model{
         
     }
 
-    public function setCat_Id(int $cat_id)
+    public function setCatId(int $category_id)
     {
-        $this->cat_id = $cat_id;
+        $this->category_id = $category_id;
         
     }
 
@@ -63,6 +70,11 @@ class Product extends Model{
 
     public function setIngredients(string $ingredients){
         $this->ingredients = $ingredients;
+        
+    }
+
+    public function setImgPath(string $img_path){
+        $this->img_path = $img_path;
         
     }
 

@@ -6,7 +6,7 @@ class ProductRepository extends Repository {
     
     function getAll() {
         try {
-            $stmt = $this->connection->prepare("SELECT id, `name`, category_id, price, ingredients FROM product");
+            $stmt = $this->connection->prepare("SELECT id, `name`, category_id, price, ingredients, img_path FROM product");
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Product');
             $products = $stmt->fetchAll();
@@ -19,7 +19,7 @@ class ProductRepository extends Repository {
 
     function getByProductId($product_id){
         try {
-            $stmt = $this->connection->prepare("SELECT id, `name`, category_id, price, ingredients FROM product WHERE id = ?");
+            $stmt = $this->connection->prepare("SELECT id, `name`, category_id, price, ingredients, img_path FROM product WHERE id = ?");
             $stmt->execute([$product_id]);
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Product');
             $product = $stmt->fetch();

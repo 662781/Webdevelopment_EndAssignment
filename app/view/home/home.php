@@ -4,6 +4,10 @@ session_start();
 
 $username = "";
 
+if(!isset($_SESSION["loggedin"])){
+    $_SESSION["loggedin"] = false;
+}
+
 if(isset($_SESSION["username"])){
     $username = $_SESSION["username"];
 }

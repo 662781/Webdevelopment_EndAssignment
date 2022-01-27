@@ -9,8 +9,4 @@ class ProductsController extends Controller{
         include '../view/products/products.php';
         // $this->displayView("model");
     }
-
-    public function about(){
-        echo "You've reached the about method of the products controller";
-    }
 }
