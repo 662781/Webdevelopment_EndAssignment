@@ -1,12 +1,17 @@
 <?php
 require_once __DIR__ . '/../../model/cart.php';
 require_once __DIR__ . '/../../model/cart-item.php';
+require_once __DIR__ . '/../../model/user.php';
+require_once __DIR__ . '/../../service/orderservice.php';
 session_start();
 
-$username = "";
+$user;
 $cart;
 $product_id;
 $total_price = 0;
+$confirmation = "";
+$error = "";
+$order_service = new OrderService();
 
 if (isset($_SESSION["cart"])) {
 
@@ -17,8 +22,8 @@ if (isset($_SESSION["cart"])) {
     }
 }
 
-if (isset($_SESSION["username"])) {
-    $username = $_SESSION["username"];
+if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
 }
 
 if (isset($_POST["logout"])) {
@@ -33,6 +38,48 @@ if (isset($_POST["del-item"])) {
             $cart->delItem($item);
             header("location: cart");
         }
+    }
+}
+
+if (isset($_POST["pay"])) {
+    if ($_POST["cartUser"] != "" && $_POST["cartEmail"] != "" && $_POST["cartAddress"] != "" && $_POST["cartPostalCode"] != "" && $_POST["paymentMethod"] != "") {
+        $username = $_POST["cartUser"];
+        $email = $_POST["cartEmail"];
+        $address = $_POST["cartAddress"];
+        $postalcode = $_POST["cartPostalCode"];
+        $paymentMethod = $_POST["paymentMethod"];
+        $datetime = date("d-m-Y H:i:s");
+
+        $order = new Order();
+        //Check if user is logged-in then set their userId, else set the default guest id
+        if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+            $order->setUserId($user->getId());
+        } else {
+            $order->setUserId(7);
+        }
+
+        $order->setDateTime($datetime);
+        $order->setPaymentMethod($paymentMethod);
+        $order->setTotalPrice($total_price);
+
+        $order_service->insertOrder($order);
+
+        $orderId = $order_service->getOrderByDateTime($datetime)->getId();
+
+        foreach ($cart->getItems() as $item) {
+            $orderline = new OrderLine();
+            $orderline->setOrderId($orderId);
+            $orderline->setProductId($item->getProduct()->getId());
+            $orderline->setAmount($item->getAmount());
+            $orderline->setPrice($item->getProduct()->getPrice() * $item->getAmount());
+            $order_service->insertOrderLine($orderline);
+        }
+
+        $confirmation = "Order recieved! Check your mailbox (" . $email . ") for further details.";
+        
+    }
+    else{
+        $error = "Please fill in all fields before submitting!";
     }
 }
 
@@ -92,16 +139,18 @@ if (isset($_POST["del-item"])) {
                             <strong>€ <?php echo $total_price ?></strong>
                         </li>
                     </ul>
+                    <h4 class="conf_msg"><?echo $confirmation?></h4>
                 </div>
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3">Billing address</h4>
-                    <form class="needs-validation" novalidate="">
+                    <h4 class="error_msg"><?echo $error?></h4>
+                    <form class="needs-validation" novalidate="" function="cart" method="post">
                         <div class="row g-3">
                             <div class="col-12">
                                 <label for="username" class="form-label">Username</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">@</span>
-                                    <input type="text" class="form-control" id="username" placeholder="Username" required="">
+                                    <input type="text" class="form-control" id="username" placeholder="Username" required="" name="cartUser" <? if ($_SESSION["loggedin"] === true) { ?> value=<? echo $user->getUsername(); ?><? } ?>>
                                     <div class="invalid-feedback">
                                         Your username is required.
                                     </div>
@@ -110,7 +159,7 @@ if (isset($_POST["del-item"])) {
 
                             <div class="col-12">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                                <input type="email" class="form-control" id="email" placeholder="you@example.com" name="cartEmail" <? if ($_SESSION["loggedin"] === true) { ?> value=<? echo $user->getEmail(); ?><? } ?>>
                                 <div class="invalid-feedback">
                                     Please enter a valid email address for shipping updates.
                                 </div>
@@ -118,7 +167,7 @@ if (isset($_POST["del-item"])) {
 
                             <div class="col-12">
                                 <label for="address" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address" placeholder="Cloud St 4" required="">
+                                <input type="text" class="form-control" id="address" placeholder="Cloud St 4" required="" name="cartAddress">
                                 <div class="invalid-feedback">
                                     Please enter your shipping address.
                                 </div>
@@ -126,7 +175,7 @@ if (isset($_POST["del-item"])) {
 
                             <div class="col-md-3">
                                 <label for="zip" class="form-label">Postal Code</label>
-                                <input type="text" class="form-control" id="zip" placeholder="1234AB" required="">
+                                <input type="text" class="form-control" id="zip" placeholder="1234AB" required="" name="cartPostalCode">
                                 <div class="invalid-feedback">
                                     Postal Code required.
                                 </div>
@@ -139,22 +188,22 @@ if (isset($_POST["del-item"])) {
 
                         <div class="my-3">
                             <div class="form-check">
-                                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required="">
-                                <label class="form-check-label" for="credit">IDEAL</label>
+                                <input id="ideal" name="paymentMethod" type="radio" class="form-check-input" checked="" required="" value="IDEAL">
+                                <label class="form-check-label" for="ideal">IDEAL</label>
                             </div>
                             <div class="form-check">
-                                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required="">
-                                <label class="form-check-label" for="debit">PayPal</label>
+                                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required="" value="PayPal">
+                                <label class="form-check-label" for="paypal">PayPal</label>
                             </div>
                             <div class="form-check">
-                                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required="">
-                                <label class="form-check-label" for="paypal">Monopoly Money</label>
+                                <input id="monopoly" name="paymentMethod" type="radio" class="form-check-input" required="" value="Monopoly Money">
+                                <label class="form-check-label" for="monopoly">Monopoly Money</label>
                             </div>
                         </div>
 
                         <hr class="my-4">
 
-                        <button class="w-100 btn btn-primary btn-lg" type="submit">Commence Payment</button>
+                        <button class="w-100 btn btn-primary btn-lg" type="submit" name="pay">Commence Payment</button>
                     </form>
                 </div>
             </div>
@@ -165,7 +214,6 @@ if (isset($_POST["del-item"])) {
 
     <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="form-validation.js"></script>
-    <script src="/js/products.js"></script>
 
 </body>
 

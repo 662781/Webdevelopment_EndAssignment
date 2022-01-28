@@ -3,10 +3,11 @@ require_once __DIR__ . '/../../model/product.php';
 require_once __DIR__ . '/../../model/cart.php';
 require_once __DIR__ . '/../../model/cart-item.php';
 require_once __DIR__ . '/../../service/productservice.php';
+require_once __DIR__ . '/../../model/user.php';
 
 session_start();
 
-$username = "";
+$user;
 $productId;
 $product;
 $productList = array();
@@ -24,8 +25,8 @@ if (isset($_SESSION["cart"])) {
     $cart = $_SESSION["cart"];
 }
 
-if (isset($_SESSION["username"])) {
-    $username = $_SESSION["username"];
+if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
 }
 
 if (isset($_POST["logout"])) {

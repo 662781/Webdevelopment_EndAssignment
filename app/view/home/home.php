@@ -1,15 +1,16 @@
 <?php
 require_once __DIR__ . '/../../model/cart.php';
+require_once __DIR__ . '/../../model/user.php';
 session_start();
 
-$username = "";
+$user;
 
 if (!isset($_SESSION["loggedin"])) {
     $_SESSION["loggedin"] = false;
 }
 
-if (isset($_SESSION["username"])) {
-    $username = $_SESSION["username"];
+if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
 }
 
 if (isset($_POST["logout"])) {

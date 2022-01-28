@@ -23,7 +23,7 @@ if (isset($_POST["sign-in"])) {
 
         if (password_verify($password, $user->getPassword())) {
             $_SESSION["loggedin"] = true;
-            $_SESSION["username"] = $username;
+            $_SESSION["user"] = $user;
             header("location: home");
             // echo "You are in Mr. KlaasDeTester2!";
         } else {

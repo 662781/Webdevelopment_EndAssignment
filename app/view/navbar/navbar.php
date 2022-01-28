@@ -20,7 +20,7 @@
                 <?php
                 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                     echo '<ul class="nav">
-                    <li class="nav-item"><a href="profile" class="nav-link link-dark px-2"><img src="images/person-circle.svg" alt="profile">' . " " . $username . '</a></li>
+                    <li class="nav-item"><a href="profile" class="nav-link link-dark px-2"><img src="images/person-circle.svg" alt="profile">' . " " . $user->getUsername() . '</a></li>
                     <li class="nav-item"><a href="cart" class="nav-link link-dark px-2"><img src="images/cart.svg" alt="cart"> Cart</a></li>
                     <li class="nav-item"><form function="home" method="post"><button type="submit" name="logout" class="btn logout-btn">Logout<img src="images/arrow-bar-right.svg" alt="logout"></button></form></li>
                     </ul>';

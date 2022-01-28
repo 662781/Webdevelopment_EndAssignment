@@ -1,11 +1,12 @@
 <?php
+require_once __DIR__ . '/../../model/user.php';
 session_start();
 
-$username = "";
+$user;
 
-//Set the username if the session variable exists
-if (isset($_SESSION["username"])) {
-    $username = $_SESSION["username"];
+//Set user if the session variable exists
+if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
 }
 
 //If the logout btn is clicked, check if the session variable "loggedin" exists, set it to false & redirect user to the home page

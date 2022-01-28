@@ -101,3 +101,11 @@
     max-width: 30%;
     margin-right: 5%;
 }
+
+.error_msg{
+    color: red;
+}
+
+.conf_msg{
+    color: goldenrod;
+}
