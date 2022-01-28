@@ -75,7 +75,7 @@ if (isset($_POST["pay"])) {
             $order_service->insertOrderLine($orderline);
         }
 
-        $confirmation = "Order recieved! Check your mailbox (" . $email . ") for further details.";
+        $confirmation = "Order received! Check your mailbox (" . $email . ") for further details.";
         
     }
     else{
