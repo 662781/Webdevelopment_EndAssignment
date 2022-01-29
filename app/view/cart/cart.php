@@ -75,10 +75,18 @@ if (isset($_POST["pay"])) {
             $order_service->insertOrderLine($orderline);
         }
 
+        //Send email to given email address
+        $to      = $email;
+        $subject = 'Test van KlaasDeTester';
+        $message = 'Hello World!';
+        $headers = 'From: 662781@student.inholland.nl' . "\r\n" .
+            'Reply-To: 662781@student.inholland.nl' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        mail($to, $subject, $message, $headers);
+
         $confirmation = "Order received! Check your mailbox (" . $email . ") for further details.";
-        
-    }
-    else{
+    } else {
         $error = "Please fill in all fields before submitting!";
     }
 }
@@ -139,18 +147,19 @@ if (isset($_POST["pay"])) {
                             <strong>€ <?php echo $total_price ?></strong>
                         </li>
                     </ul>
-                    <h4 class="conf_msg"><?echo $confirmation?></h4>
+                    <h4 class="conf_msg"><? echo $confirmation ?></h4>
                 </div>
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3">Billing address</h4>
-                    <h4 class="error_msg"><?echo $error?></h4>
+                    <h4 class="error_msg"><? echo $error ?></h4>
                     <form class="needs-validation" novalidate="" function="cart" method="post">
                         <div class="row g-3">
                             <div class="col-12">
                                 <label for="username" class="form-label">Username</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">@</span>
-                                    <input type="text" class="form-control" id="username" placeholder="Username" required="" name="cartUser" <? if ($_SESSION["loggedin"] === true) { ?> value=<? echo $user->getUsername(); ?><? } ?>>
+                                    <input type="text" class="form-control" id="username" placeholder="Username" required="" name="cartUser" <? if ($_SESSION["loggedin"] === true) { ?> readonly value=<? echo $user->getUsername(); ?><? } else { ?> readonly value=<? echo "guest";
+                                                                                                                                                                                                                                                                    } ?>>
                                     <div class="invalid-feedback">
                                         Your username is required.
                                     </div>
@@ -159,7 +168,7 @@ if (isset($_POST["pay"])) {
 
                             <div class="col-12">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="you@example.com" name="cartEmail" <? if ($_SESSION["loggedin"] === true) { ?> value=<? echo $user->getEmail(); ?><? } ?>>
+                                <input type="email" class="form-control" id="email" placeholder="you@example.com" name="cartEmail" <? if ($_SESSION["loggedin"] === true) { ?> readonly value=<? echo $user->getEmail(); ?><? } ?>>
                                 <div class="invalid-feedback">
                                     Please enter a valid email address for shipping updates.
                                 </div>
