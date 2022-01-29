@@ -1,38 +1,90 @@
-function addToCart(){
+function loadProduct() {
 
-    //Get the values of the product from products.php
+    fetch('http://localhost/api') // Call to api end-point
+        .then(result => result.json()) // Get result as json
+        .then(products => {
+            products.forEach(product => { // Create a product-card for each product
 
+                if (product.category_id == 2) {
+                    //Create all the elements for a product-card
 
-    //Get the elements to build a cart-item from cart.php & add the right values to the inner html
-    var cart = document.getElementById("cart");
+                    //Get the main div element to place all child elements in
+                    var mainDiv = document.getElementById("pizzas");
 
-    var listItem = document.createElement("li");
-    listItem.className = "list-group-item d-flex justify-content-between lh-sm";
+                    //Create child elements
+                    var colDiv = document.createElement("div");
+                    colDiv.className = "col";
 
-    var product = document.createElement("div");
+                    var cardShadow = document.createElement("div");
+                    cardShadow.className = "card shadow-sm";
 
-    var productHeader = document.createElement("h6");
-    productHeader.className = "my-0";
+                    var img = document.createElement("img");
+                    img.className = "product-page-image";
+                    img.setAttribute('src', product.img_path)
+                    img.setAttribute('alt', product.name)
 
-    var productContent = document.createElement("small");
-    productContent.className = "text-muted";
+                    var cardBody = document.createElement("div");
+                    cardBody.className = "card-body";
 
-    var productImage = document.createElement("img");
-    productImage.className = "cart-item-img";
+                    var cardHeader = document.createElement("h3");
+                    cardHeader.className = "product-header";
+                    cardHeader.innerHTML = product.name;
 
-    var productPrice = document.createElement("span");
-    productPrice.className = "text-muted";
+                    var productPrice = document.createElement("h4");
+                    productPrice.className = "product-price";
+                    productPrice.innerHTML = product.price;
 
+                    var ingredients = document.createElement("p");
+                    ingredients.className = "card-text";
+                    ingredients.innerHTML = product.ingredients;
 
+                    var cardActions = document.createElement("div");
+                    cardActions.className = "d-flex justify-content-between align-items-center";
 
-    //Just an example of a cart-item in HTML
-    // <li class="list-group-item d-flex justify-content-between lh-sm">
-    //                         <div>
-    //                             <h6 class="my-0">Pizza Margherita</h6>
-    //                             <small class="text-muted"><i>ingredients</i></small>
-    //                         </div>
-    //                         <img src="images/pizza-margarita.png" alt="margherita" class="cart-item-img">
-    //                         <span class="text-muted">€5,00</span>
-    //                     </li>
+                    var form = document.createElement("form");
+                    form.setAttribute('action', 'products')
+                    form.setAttribute('method', 'post')
+
+                    var btnGroup = document.createElement("div");
+                    btnGroup.className = "btn-group";
+
+                    var btnAddToCart = document.createElement("button");
+                    btnAddToCart.className = "btn btn-sm btn-outline-primary";
+                    btnAddToCart.setAttribute('type', 'submit');
+                    btnAddToCart.setAttribute('name', 'add-item');
+                    btnAddToCart.innerHTML = "Add to cart";
+
+                    var inputProductId = document.createElement("input");
+                    inputProductId.setAttribute('type', 'hidden');
+                    inputProductId.setAttribute('name', 'product-id');
+                    inputProductId.setAttribute('value', product.id);
+
+                    var inputAmount = document.createElement("input");
+                    inputAmount.setAttribute('type', 'number');
+                    inputAmount.setAttribute('name', 'amount');
+                    inputAmount.setAttribute('value', '1');
+                    inputAmount.setAttribute('min', '1');
+                    inputAmount.setAttribute('max', '10');
+                    inputAmount.className = "product-amount";
+
+                    var btmCaption = document.createElement("small");
+                    btmCaption.className = "text-muted";
+                    btmCaption.innerHTML = "Order Now & Ready + Delivered in 30 min.";
+
+                    btnGroup.appendChild(btnAddToCart);
+                    form.appendChild(btnGroup, inputProductId, inputAmount);
+
+                    cardActions.appendChild(form, btmCaption);
+
+                    cardBody.appendChild(cardHeader, productPrice, ingredients, cardActions);
+
+                    cardShadow.appendChild(img, cardBody);
+
+                    colDiv.appendChild(cardShadow);
+
+                    mainDiv.appendChild(colDiv);
+                }
+            })
+        })
 
 }
