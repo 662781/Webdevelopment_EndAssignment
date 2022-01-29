@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../service/productservice.php';
 
-class ApiController {
+class ProductsController {
 
     private $productService; 
 
