@@ -1,8 +1,7 @@
-fetch('http://localhost/api') // Call to api end-point
+fetch('http://localhost/api/products') // Call to api end-point
     .then(result => result.json()) // Get result as json
     .then(products => {
         products.forEach(product => { // Create a product-card for each product
-
             if (product.category_id == 2) {
                 //Create all the elements for a product-card
 

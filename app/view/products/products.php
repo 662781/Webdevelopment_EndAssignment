@@ -16,7 +16,7 @@ $productService = new ProductService();
 
 $productList = $productService->getAll();
 
-foreach($productList as $prod){
+foreach ($productList as $prod) {
     $price = $prod->getPrice();
     $prod->setPrice($price);
 }
@@ -71,7 +71,7 @@ if (isset($_POST["add-item"])) {
         <div class="container">
             <h1 class="product-type">Pizza</h1>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="pizzas">
-            <!-- JS adds these -->
+                <!-- JS adds these -->
             </div>
 
             <h1 class="product-type">Pasta</h1>
@@ -90,7 +90,7 @@ if (isset($_POST["add-item"])) {
                                             <div class="btn-group">
                                                 <button type="submit" name="add-item" class="btn btn-sm btn-outline-primary">Add to cart</button>
                                             </div>
-                                            <input type="hidden" name="product-id" value=<?php echo $prod->getId()?>>
+                                            <input type="hidden" name="product-id" value=<?php echo $prod->getId() ?>>
                                             <input type="number" class="product-amount" name="amount" value="1" min="1" max="10">
                                         </form>
                                         <small class="text-muted">Freshly made & Delivered within 60 min.</small>
@@ -104,7 +104,100 @@ if (isset($_POST["add-item"])) {
         </div>
     </div>
     <? include_once '../view/footer/footer.php'; ?>
-    <script src="js/products.js"></script>
+    <script>
+        function loadProducts() {
+            fetch('http://localhost/api/products') // Call to api end-point
+                .then(result => result.json()) // Get result as json
+                .then(products => {
+                    products.forEach(product => { // Create a product-card for each product
+                        console.log('test');
+                        // if (product.category_id == 2) {
+                            //Create all the elements for a product-card
+
+                            //Get the main div element to place all child elements in
+                            var mainDiv = document.getElementById("pizzas");
+
+                            //Create child elements
+                            var colDiv = document.createElement("div");
+                            colDiv.className = "col";
+
+                            var cardShadow = document.createElement("div");
+                            cardShadow.className = "card shadow-sm";
+
+                            var img = document.createElement("img");
+                            img.className = "product-page-image";
+                            // img.setAttribute('src', product.img_path)
+                            img.src = product.img_path;
+                            // img.setAttribute('alt', product.name)
+                            img.alt = product.name;
+
+                            var cardBody = document.createElement("div");
+                            cardBody.className = "card-body";
+
+                            var cardHeader = document.createElement("h3");
+                            cardHeader.className = "product-header";
+                            cardHeader.innerHTML = product.name;
+
+                            var productPrice = document.createElement("h4");
+                            productPrice.className = "product-price";
+                            productPrice.innerHTML = product.price;
+
+                            var ingredients = document.createElement("p");
+                            ingredients.className = "card-text";
+                            ingredients.innerHTML = product.ingredients;
+
+                            var cardActions = document.createElement("div");
+                            cardActions.className = "d-flex justify-content-between align-items-center";
+
+                            var form = document.createElement("form");
+                            form.setAttribute('action', 'products')
+                            form.setAttribute('method', 'post')
+
+                            var btnGroup = document.createElement("div");
+                            btnGroup.className = "btn-group";
+
+                            var btnAddToCart = document.createElement("button");
+                            btnAddToCart.className = "btn btn-sm btn-outline-primary";
+                            btnAddToCart.setAttribute('type', 'submit');
+                            btnAddToCart.setAttribute('name', 'add-item');
+                            btnAddToCart.innerHTML = "Add to cart";
+
+                            var inputProductId = document.createElement("input");
+                            inputProductId.setAttribute('type', 'hidden');
+                            inputProductId.setAttribute('name', 'product-id');
+                            inputProductId.setAttribute('value', product.id);
+
+                            var inputAmount = document.createElement("input");
+                            inputAmount.setAttribute('type', 'number');
+                            inputAmount.setAttribute('name', 'amount');
+                            inputAmount.setAttribute('value', '1');
+                            inputAmount.setAttribute('min', '1');
+                            inputAmount.setAttribute('max', '10');
+                            inputAmount.className = "product-amount";
+
+                            var btmCaption = document.createElement("small");
+                            btmCaption.className = "text-muted";
+                            btmCaption.innerHTML = "Order Now & Ready + Delivered in 30 min.";
+
+                            btnGroup.appendChild(btnAddToCart);
+                            form.appendChild(btnGroup, inputProductId, inputAmount);
+
+                            cardActions.appendChild(form, btmCaption);
+
+                            cardBody.appendChild(cardHeader, productPrice, ingredients, cardActions);
+
+                            cardShadow.appendChild(img, cardBody);
+
+                            colDiv.appendChild(cardShadow);
+
+                            mainDiv.appendChild(colDiv);
+                        // }
+                    })
+                })
+        }
+
+        loadProducts();
+    </script>
 </body>
 
 </html>

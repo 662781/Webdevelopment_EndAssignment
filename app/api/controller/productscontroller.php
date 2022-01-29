@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../service/productservice.php';
+require __DIR__ . '/../../service/productservice.php';
 
 class ProductsController {
 
@@ -11,12 +11,13 @@ class ProductsController {
     }
 
     public function index() {
-        if($_SERVER['REQUEST_METHOD'] === "GET"){
+        if($_SERVER["REQUEST_METHOD"] === "GET"){
             // return all products in the DB as JSON
         
             $productsJSON = $this->productService->getAll();
             echo json_encode($productsJSON);
         }
+        
         
     }
 }
