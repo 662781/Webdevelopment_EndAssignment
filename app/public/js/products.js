@@ -10,8 +10,11 @@
 //     }
 // }
 
+//Docker
+//http://localhost/api/products
+
 function loadProducts() {
-    fetch('http://localhost/api/products') // Call to api end-point
+    fetch('https://https://phpendassignment.herokuapp.com//api/products') // Call to api end-point
         .then(result => result.json()) // Get result as json
         .then(products => {
             // const products_array = new Array;
