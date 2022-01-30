@@ -15,10 +15,16 @@ if (getenv('DATABASE_URL') != "") {
     // $database = "pizzatimedb";
 
     //FreeMySQLHosting.net
-    $Server = "sql5.freemysqlhosting.net";
-    $Name = "sql5469236";
-    $Username = "sql5469236";
-    $Password = "kNpfX1fBjV";
-    $Port_number = "3306";
+    // $Server = "sql5.freemysqlhosting.net";
+    // $Name = "sql5469236";
+    // $Username = "sql5469236";
+    // $Password = "kNpfX1fBjV";
+    // $Port_number = "3306";
+
+    $type = "mysql";
+    $servername = "sql5.freemysqlhosting.net";
+    $username = "sql5469236";
+    $password = "kNpfX1fBjV";
+    $database = "sql5469236";
 }
 ?>
