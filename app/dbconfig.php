@@ -23,8 +23,9 @@ if (getenv('DATABASE_URL') != "") {
 
     $type = "mysql";
     $servername = "sql5.freemysqlhosting.net";
+    $database = "sql5469236";
     $username = "sql5469236";
     $password = "kNpfX1fBjV";
-    $database = "sql5469236";
+    
 }
 ?>
