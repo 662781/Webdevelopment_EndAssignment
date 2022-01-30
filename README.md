@@ -21,3 +21,8 @@ Unfinished (due to lack of time):
 - Creating & ordering a custom pizza
 - Automatic email after succesful order
 - Account insight with order history & edit function
+
+</br>
+
+NB
+- 1 image wouldn't load for some reason while the website is hosted on Heroku. It loads while working from Docker though.
