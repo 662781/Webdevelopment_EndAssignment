@@ -25,4 +25,5 @@ Unfinished (due to lack of time):
 </br>
 
 NB
+- Link to hosted website: https://phpendassignment.herokuapp.com/
 - 1 image wouldn't load for some reason while the website is hosted on Heroku. It loads while working from Docker though.
