@@ -24,8 +24,7 @@
                     <li class="nav-item"><a href="cart" class="nav-link link-dark px-2"><img src="images/cart.svg" alt="cart"> Cart</a></li>
                     <li class="nav-item"><form function="home" method="post"><button type="submit" name="logout" class="btn logout-btn">Logout<img src="images/arrow-bar-right.svg" alt="logout"></button></form></li>
                     </ul>';
-                } 
-                else {
+                } else {
                     echo '<ul class="nav">
                     <li class="nav-item"><a href="login" class="nav-link link-dark px-2"><img src="images/person-circle.svg" alt="login"> Login</a></li>
                     <li class="nav-item"><a href="register" class="nav-link link-dark px-2"><img src="images/person-plus-fill.svg" alt="sign up"> Register</a></li>

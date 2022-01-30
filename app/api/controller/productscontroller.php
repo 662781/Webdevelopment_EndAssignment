@@ -1,5 +1,6 @@
 <?php
-require __DIR__ . '/../../service/productservice.php';
+require_once __DIR__ . '/../../service/productservice.php';
+require_once __DIR__ . '/../../model/product.php';
 
 class ProductsController {
 
@@ -15,7 +16,8 @@ class ProductsController {
             // return all products in the DB as JSON
         
             $productsJSON = $this->productService->getAll();
-            echo json_encode($productsJSON);
+            echo json_encode($productsJSON);    
+            // var_dump(json_encode($productsJSON));
         }
         
         

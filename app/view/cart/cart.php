@@ -76,14 +76,14 @@ if (isset($_POST["pay"])) {
         }
 
         //Send email to given email address
-        $to      = $email;
-        $subject = 'Test van KlaasDeTester';
-        $message = 'Hello World!';
-        $headers = 'From: 662781@student.inholland.nl' . "\r\n" .
-            'Reply-To: 662781@student.inholland.nl' . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
+        // $to      = $email;
+        // $subject = 'Test van KlaasDeTester';
+        // $message = 'Hello World!';
+        // $headers = 'From: 662781@student.inholland.nl' . "\r\n" .
+        //     'Reply-To: 662781@student.inholland.nl' . "\r\n" .
+        //     'X-Mailer: PHP/' . phpversion();
 
-        mail($to, $subject, $message, $headers);
+        // mail($to, $subject, $message, $headers);
 
         $confirmation = "Order received! Check your mailbox (" . $email . ") for further details.";
     } else {
@@ -151,7 +151,7 @@ if (isset($_POST["pay"])) {
                 </div>
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3">Billing address</h4>
-                    <h4 class="error_msg"><? echo $error ?></h4>
+                    <h5 class="error_msg"><? echo $error ?></h5>
                     <form class="needs-validation" novalidate="" function="cart" method="post">
                         <div class="row g-3">
                             <div class="col-12">
