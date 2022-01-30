@@ -15,56 +15,21 @@ class PatternRouter
 
     public function route($uri)
     {
-
-
-        // $uri = $this->stripParameters($uri);
-
-        // $explodedUri = explode('/', $uri);
-
-        // if (!isset($explodedUri[0]) || empty($explodedUri[0])) {
-
-        //     $explodedUri[0] = 'home';
-        // }
-
-        // $controllerName = $explodedUri[0] . "controller";
-
-
-
-        // if (!isset($explodedUri[1]) || empty($explodedUri[1])) {
-
-        //     $explodedUri[1] = 'index';
-        // }
-
-        // $methodName = $explodedUri[1];
-
-
-        // try {
-        //     require __DIR__ . '/controller/' . $controllerName . '.php';
-        //     $controllerObj = new $controllerName();
-        //     $controllerObj->$methodName();
-        // } catch (Exception $e) {
-
-        //     http_response_code(404);
-        // }
-
-        // Path algorithm
-        // pattern = /controller/method
-
-        // check if we are requesting an api route
+        // Check if there's an api request
         $api = false;
         if (str_starts_with($uri, "api/")) {
             $uri = substr($uri, 4);
             $api = true;
         }
 
-        // set default controller/method
+        // Set default controller & method
         $defaultcontroller = 'home';
         $defaultmethod = 'index';
 
-        // ignore query parameters
+        // Ignore query parameters
         $uri = $this->stripParameters($uri);
 
-        // read controller/method names from URL
+        // Read controller & method names from URI
         $explodedUri = explode('/', $uri);
 
         if (!isset($explodedUri[0]) || empty($explodedUri[0])) {
@@ -77,7 +42,7 @@ class PatternRouter
         }
         $methodName = $explodedUri[1];
 
-        // load the file with the controller class
+        // Require the file with the controller class
         $filename = __DIR__ . '/controller/' . $controllerName . '.php';
         if ($api) {
             $filename = __DIR__ . '/api/controller/' . $controllerName . '.php';
@@ -88,7 +53,7 @@ class PatternRouter
             http_response_code(404);
             die();
         }
-        // dynamically call relevant controller method
+        // Dynamically call controller method
         try {
             $controllerObj = new $controllerName;
             $controllerObj->{$methodName}();

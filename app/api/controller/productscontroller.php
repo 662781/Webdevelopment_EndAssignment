@@ -13,8 +13,8 @@ class ProductsController {
 
     public function index() {
         if($_SERVER["REQUEST_METHOD"] === "GET"){
-            // return all products in the DB as JSON
-        
+            
+            // echo all products in the DB as JSON
             $productsJSON = $this->productService->getAll();
             echo json_encode($productsJSON);    
             // var_dump(json_encode($productsJSON));
