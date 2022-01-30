@@ -7,10 +7,18 @@ if (getenv('DATABASE_URL') != "") {
     $password = $dbopts["pass"];
     $database = ltrim($dbopts["path"], '/');
 } else {
-    $type = "mysql";
-    $servername = "mysql";
-    $username = "root";
-    $password = "secret123";
-    $database = "pizzatimedb";
+    //Docker
+    // $type = "mysql";
+    // $servername = "mysql";
+    // $username = "root";
+    // $password = "secret123";
+    // $database = "pizzatimedb";
+
+    //FreeMySQLHosting.net
+    $Server = "sql5.freemysqlhosting.net";
+    $Name = "sql5469236";
+    $Username = "sql5469236";
+    $Password = "kNpfX1fBjV";
+    $Port_number = "3306";
 }
 ?>
