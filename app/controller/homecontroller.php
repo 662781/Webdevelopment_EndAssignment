@@ -1,8 +1,6 @@
 <?php
 
-require __DIR__ . '/controller.php';
-
-class HomeController extends Controller{
+class HomeController{
 
     public function index(){
         // echo "You've reached the index method of the home controller";

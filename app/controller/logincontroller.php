@@ -1,8 +1,6 @@
 <?php
 
-require __DIR__ . '/controller.php';
-
-class LoginController extends Controller{
+class LoginController {
 
     public function index(){
         // echo "You've reached the index method of the login controller";

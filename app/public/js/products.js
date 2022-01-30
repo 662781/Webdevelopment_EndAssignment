@@ -22,7 +22,7 @@ function loadProducts() {
             products.forEach(product => { // Create a product-card for each product in the array
                 // console.log('test');
                 // print(result);
-                // if (product.category_id == 2) {
+                if (product.category_id == 2) {
                     //Create all the elements for a product-card
 
                     //Get the main div element to place all child elements in
@@ -37,9 +37,7 @@ function loadProducts() {
 
                     var img = document.createElement("img");
                     img.className = "product-page-image";
-                    // img.setAttribute('src', product.img_path)
                     img.src = product.img_path;
-                    // img.setAttribute('alt', product.name)
                     img.alt = product.name;
 
                     var cardBody = document.createElement("div");
@@ -51,7 +49,7 @@ function loadProducts() {
 
                     var productPrice = document.createElement("h4");
                     productPrice.className = "product-price";
-                    productPrice.innerHTML = product.price;
+                    productPrice.innerHTML = '€' + product.price;
 
                     var ingredients = document.createElement("p");
                     ingredients.className = "card-text";
@@ -90,19 +88,30 @@ function loadProducts() {
                     btmCaption.className = "text-muted";
                     btmCaption.innerHTML = "Order Now & Ready + Delivered in 30 min.";
 
+
+                    //Build the mainDiv
+
                     btnGroup.appendChild(btnAddToCart);
-                    form.appendChild(btnGroup, inputProductId, inputAmount);
+                    
+                    form.appendChild(btnGroup);
+                    form.appendChild(inputProductId);
+                    form.appendChild(inputAmount);
 
-                    cardActions.appendChild(form, btmCaption);
+                    cardActions.appendChild(form);
+                    cardActions.appendChild(btmCaption);
 
-                    cardBody.appendChild(cardHeader, productPrice, ingredients, cardActions);
+                    cardBody.appendChild(cardHeader);
+                    cardBody.appendChild(productPrice);
+                    cardBody.appendChild(ingredients);
+                    cardBody.appendChild(cardActions);
 
-                    cardShadow.appendChild(img, cardBody);
+                    cardShadow.appendChild(img);
+                    cardShadow.appendChild(cardBody);
 
                     colDiv.appendChild(cardShadow);
 
                     mainDiv.appendChild(colDiv);
-                // }
+                }
             })
         })
 }

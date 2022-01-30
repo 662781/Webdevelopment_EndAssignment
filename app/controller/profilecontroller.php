@@ -1,8 +1,6 @@
 <?php
 
-require __DIR__ . '/controller.php';
-
-class ProfileController extends Controller{
+class ProfileController{
 
     public function index(){
         // echo "You've reached the index method of the profile controller";

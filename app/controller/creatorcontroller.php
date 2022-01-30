@@ -1,8 +1,6 @@
 <?php
 
-require __DIR__ . '/controller.php';
-
-class CreatorController extends Controller{
+class CreatorController{
 
     public function index(){
         // echo "You've reached the index method of the creator controller";

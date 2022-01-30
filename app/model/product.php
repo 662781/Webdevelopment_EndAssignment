@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/model.php';
 
-class Product extends Model{
+class Product implements JsonSerializable{
 
     //Fields
     private int $id;
@@ -10,6 +10,12 @@ class Product extends Model{
     private float $price;
     private string $ingredients;
     private string $img_path;
+
+    //Gets all the properties (fields)
+    public function jsonSerialize():mixed
+    {
+        return get_object_vars($this);
+    } 
 
     
     //Getters

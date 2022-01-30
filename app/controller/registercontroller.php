@@ -1,16 +1,14 @@
 <?php
-
-require __DIR__ . '/controller.php';
 require __DIR__ . '/../service/userservice.php';
 
-class RegisterController extends Controller{
+class RegisterController{
 
-    private $userService; 
+    // private $userService; 
 
-    // initialize services
-    function __construct() {
-        $this->userService = new UserService();
-    }
+    // // initialize services
+    // function __construct() {
+    //     $this->userService = new UserService();
+    // }
 
     public function index(){
 

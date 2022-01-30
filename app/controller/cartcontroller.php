@@ -1,8 +1,6 @@
 <?php
 
-require __DIR__ . '/controller.php';
-
-class CartController extends Controller{
+class CartController{
 
     public function index(){
         // echo "You've reached the index method of the cart controller";
