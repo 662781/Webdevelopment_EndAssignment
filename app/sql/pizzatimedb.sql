@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 27 jan 2022 om 13:41
+-- Gegenereerd op: 30 jan 2022 om 17:13
 -- Serverversie: 10.6.5-MariaDB-1:10.6.5+maria~focal
 -- PHP-versie: 7.4.25
 
@@ -30,8 +30,35 @@ SET time_zone = "+00:00";
 CREATE TABLE `order` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `payment_method` varchar(20) NOT NULL,
+  `total_price` float NOT NULL,
   `date_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `order`
+--
+
+INSERT INTO `order` (`id`, `user_id`, `payment_method`, `total_price`, `date_time`) VALUES
+(1, 5, 'on', 11, '2022-01-28 10:04:15'),
+(2, 5, 'IDEAL', 11, '2022-01-28 10:07:55'),
+(3, 5, 'IDEAL', 45, '2022-01-28 10:08:56'),
+(4, 5, 'IDEAL', 45, '2022-01-28 10:14:57'),
+(5, 5, 'IDEAL', 45, '2022-01-28 10:15:21'),
+(6, 5, 'IDEAL', 45, '2022-01-28 10:16:17'),
+(7, 5, 'IDEAL', 26, '2022-01-28 10:18:08'),
+(8, 5, 'Monopoly Money', 26, '2022-01-28 10:19:33'),
+(9, 5, 'Monopoly Money', 32.5, '2022-01-28 19:42:55'),
+(10, 7, 'PayPal', 16.5, '2022-01-29 13:13:25'),
+(11, 7, 'IDEAL', 16.5, '2022-01-29 13:17:22'),
+(12, 7, 'PayPal', 16.5, '2022-01-29 13:19:08'),
+(13, 5, 'Monopoly Money', 22.5, '2022-01-29 13:20:43'),
+(14, 5, 'PayPal', 22.5, '2022-01-29 13:25:26'),
+(15, 5, 'IDEAL', 22.5, '2022-01-29 13:26:54'),
+(16, 5, 'IDEAL', 22.5, '2022-01-29 13:28:48'),
+(17, 7, 'IDEAL', 22.5, '2022-01-29 13:29:27'),
+(18, 5, 'PayPal', 22.5, '2022-01-29 14:11:32'),
+(19, 7, 'IDEAL', 22.5, '2022-01-29 14:12:59');
 
 -- --------------------------------------------------------
 
@@ -44,8 +71,40 @@ CREATE TABLE `order_line` (
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
-  `total_price` float NOT NULL
+  `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `order_line`
+--
+
+INSERT INTO `order_line` (`id`, `order_id`, `product_id`, `amount`, `price`) VALUES
+(1, 2, 1, 2, 11),
+(2, 3, 1, 2, 11),
+(3, 3, 2, 4, 26),
+(4, 3, 6, 1, 8),
+(5, 4, 1, 2, 11),
+(6, 4, 2, 4, 26),
+(7, 4, 6, 1, 8),
+(8, 5, 1, 2, 11),
+(9, 5, 2, 4, 26),
+(10, 5, 6, 1, 8),
+(11, 6, 1, 2, 11),
+(12, 6, 2, 4, 26),
+(13, 6, 6, 1, 8),
+(14, 7, 2, 4, 26),
+(15, 8, 2, 4, 26),
+(16, 9, 2, 5, 32.5),
+(17, 10, 1, 3, 16.5),
+(18, 11, 1, 3, 16.5),
+(19, 12, 1, 3, 16.5),
+(20, 13, 4, 3, 22.5),
+(21, 14, 4, 3, 22.5),
+(22, 15, 4, 3, 22.5),
+(23, 16, 4, 3, 22.5),
+(24, 17, 4, 3, 22.5),
+(25, 18, 4, 3, 22.5),
+(26, 19, 4, 3, 22.5);
 
 -- --------------------------------------------------------
 
@@ -120,7 +179,8 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`, `created_at`) VALUES
 (3, 'KlaasdeTester3', 'klaasdetester3@jamail.nl', '$2y$10$sK7PSzTAmHlm0V2WcCfeCuEMGqtu27nN5aAi.jb9GUqoI56vAxkxq', '2022-01-24 10:48:56'),
 (4, '', '', '$2y$10$TTPTH/gTsdFNZkAcOh3bLebV8xN8q.BfFtGQ3otLC2lNw7xTJLXmm', '2022-01-24 14:30:30'),
 (5, 'Lightning', '662781@student.inholland.nl', '$2y$10$GMFveaNxqFY82be5fNG3Ge0mtwGIyQrBcrgZzi8zx44tj1HY3N89.', '2022-01-24 14:35:19'),
-(6, 'KlaasdeTester4', 'klaasdetester4@jamail.nl', '$2y$10$YvTZrTyiENB0tji3Z01sLeK81xIJmdt/mgZEOR1qdItlh6J6NArRK', '2022-01-24 14:36:27');
+(6, 'KlaasdeTester4', 'klaasdetester4@jamail.nl', '$2y$10$YvTZrTyiENB0tji3Z01sLeK81xIJmdt/mgZEOR1qdItlh6J6NArRK', '2022-01-24 14:36:27'),
+(7, 'guest', '-', '-', '2022-01-28 08:18:27');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -168,13 +228,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT voor een tabel `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT voor een tabel `order_line`
 --
 ALTER TABLE `order_line`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT voor een tabel `product`
@@ -192,7 +252,7 @@ ALTER TABLE `product_cat`
 -- AUTO_INCREMENT voor een tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
