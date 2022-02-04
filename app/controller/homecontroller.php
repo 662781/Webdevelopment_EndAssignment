@@ -30,6 +30,5 @@ class HomeController
         }
 
         include '../view/home/home.php';
-        // $this->displayView();
     }
 }
