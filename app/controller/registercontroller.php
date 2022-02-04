@@ -14,6 +14,8 @@ class RegisterController
 
         if (isset($_POST["register"])) {
 
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
             if ($_POST["username"] && $_POST["password"] != "") {
                 $user = new User();
                 $user->setUsername($_POST["username"]);

@@ -21,6 +21,8 @@ class LoginController
 
         if (isset($_POST["sign-in"])) {
 
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
             if ($_POST["username"] && $_POST["password"] != "") {
 
                 $username = $_POST["username"];

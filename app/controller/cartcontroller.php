@@ -39,6 +39,9 @@ class CartController
         }
 
         if (isset($_POST["del-item"])) {
+
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
             $product_id = $_POST["product-id"];
             foreach ($cart->getItems() as $item) {
                 if ($item->getProduct()->getId() == $product_id) {
@@ -49,6 +52,9 @@ class CartController
         }
 
         if (isset($_POST["pay"])) {
+            
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
             if ($_POST["cartUser"] != "" && $_POST["cartEmail"] != "" && $_POST["cartAddress"] != "" && $_POST["cartPostalCode"] != "" && $_POST["paymentMethod"] != "") {
                 $username = $_POST["cartUser"];
                 $email = $_POST["cartEmail"];
