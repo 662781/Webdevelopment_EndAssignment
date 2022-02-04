@@ -15,10 +15,10 @@ if (getenv('DATABASE_URL') != "") {
     $password = "kNpfX1fBjV";
 } else {
     //Docker
-    // $type = "mysql";
-    // $servername = "mysql";
-    // $username = "root";
-    // $password = "secret123";
-    // $database = "pizzatimedb";
+    $type = "mysql";
+    $servername = "mysql";
+    $username = "root";
+    $password = "secret123";
+    $database = "pizzatimedb";
 }
 ?>
