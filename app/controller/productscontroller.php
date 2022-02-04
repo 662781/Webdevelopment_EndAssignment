@@ -23,6 +23,7 @@ class ProductsController
 
         $productList = $productService->getAll();
 
+        //Sets the prices of every product, with a rounded number
         foreach ($productList as $prod) {
             $price = $prod->getPrice();
             $prod->setPrice($price);
@@ -42,6 +43,7 @@ class ProductsController
         }
 
         if (isset($_POST["add-item"])) {
+
             $productId = $_POST["product-id"];
 
             $product = $productService->getByProductId($productId);

@@ -24,6 +24,7 @@ class CartController
 
             $cart = $_SESSION["cart"];
 
+            //Calculate the total price of every item in the cart
             foreach ($cart->getItems() as $item) {
                 $total_price += ($item->getProduct()->getPrice() * $item->getAmount());
             }
